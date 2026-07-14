@@ -1,0 +1,8 @@
+// Composant : COUNTER (gros chiffre orange "people ahead of you")
+.counter {
+    font-family: $headers-font; // Baloo 2
+    font-weight: $font-weight-extra-bold; // ExtraBold
+    font-size: 4rem; // 64px
+    line-height: 1;
+    color: $primary;
+}

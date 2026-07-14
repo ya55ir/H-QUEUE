@@ -1,0 +1,40 @@
+// Composant : BOUTONS
+// Forme pill + orange = déjà via les tokens. Ici : typo Baloo bold + variantes.
+
+.btn {
+    font-family: $headers-font; // Baloo 2
+    font-weight: $font-weight-bold;
+    --bs-btn-padding-y: 1rem; // ~56px de haut (Figma)
+    --bs-btn-padding-x: 1.5rem;
+}
+
+// Icône optionnelle à gauche du label
+.btn i:not(:only-child) {
+    margin-right: .5rem;
+}
+
+.btn-primary {
+    --bs-btn-color: #{$text-on-brand};
+    --bs-btn-hover-color: #{$text-on-brand};
+    --bs-btn-active-color: #{$text-on-brand};
+}
+
+// Secondary : fond blanc, bordure + texte navy (ex. "Use my location").
+.btn-outline-brand {
+    --bs-btn-color: #{$brand};
+    --bs-btn-border-color: #{$brand};
+    --bs-btn-bg: #{$white};
+    --bs-btn-hover-color: #{$text-on-brand};
+    --bs-btn-hover-bg: #{$brand};
+    --bs-btn-hover-border-color: #{$brand};
+    --bs-btn-active-color: #{$text-on-brand};
+    --bs-btn-active-bg: #{$brand};
+    --bs-btn-active-border-color: #{$brand};
+}
+
+// Link : texte seul, navy, sans soulignement (ex. "See other venues").
+.btn-link {
+    --bs-btn-color: #{$brand};
+    --bs-btn-hover-color: #{$primary};
+    text-decoration: none;
+}

@@ -1,0 +1,12 @@
+// Composant : BADGE cuisine (pill orange-subtle)
+.badge-cuisine {
+    display: inline-block;
+    padding: .25rem .625rem;
+    border-radius: 50rem;
+    background-color: $primary-subtle;
+    color: $primary;
+    font-family: $headers-font;
+    font-weight: $font-weight-bold;
+    font-size: .8125rem; // 13px
+    line-height: 1.2;
+}

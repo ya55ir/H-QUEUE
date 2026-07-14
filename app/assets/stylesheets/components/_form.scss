@@ -1,0 +1,63 @@
+// Composant : FORMULAIRE
+// Label Baloo majuscule + input pill (radius déjà via tokens).
+// Champ avec icônes optionnelles gauche/droite (input-group maison).
+
+// --- Label ---
+label,
+.form-label {
+    font-family: $headers-font; // Baloo 2
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    font-size: .875rem; // 14px
+    color: $brand;
+    margin-bottom: .25rem;
+}
+
+// --- Input : 3 états ---
+.form-control {
+    border-color: $border; // Default
+    padding: .75rem 1.25rem;
+    color: $brand; // Filled : texte navy
+
+    &::placeholder {
+        color: $tertiary;
+    }
+
+    &:focus {
+        // Active
+        border-color: $primary;
+        box-shadow: 0 0 0 .2rem $primary-subtle;
+    }
+}
+
+// --- Champ avec icônes optionnelles ---
+.field-control {
+    position: relative;
+}
+
+.field-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $tertiary;
+    font-size: 1.5rem;
+}
+
+.field-icon-left {
+    left: 1rem;
+}
+
+.field-icon-right {
+    right: 1rem;
+    color: $primary;
+    cursor: pointer;
+}
+
+.field-control:has(.field-icon-left) .form-control {
+    padding-left: 3rem;
+}
+
+.field-control:has(.field-icon-right) .form-control {
+    padding-right: 3rem;
+}

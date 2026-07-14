@@ -1,0 +1,5 @@
+// Composant : CARD (radius 16 + bordure via tokens, on ajoute une ombre légère)
+.card {
+    border-color: $border;
+    box-shadow: 0 2px 8px rgba($brand, .04);
+}
