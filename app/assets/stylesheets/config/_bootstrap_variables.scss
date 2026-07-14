@@ -1,28 +1,35 @@
-// This is where you override default Bootstrap variables
-// 1. Find all Bootstrap variables that you can override at the end of each component's documentation under the `Sass variables` anchor
-// e.g. here are the ones you can override for the navbar https://getbootstrap.com/docs/5.3/components/navbar/#sass-variables
-// 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
-// 3. You can override them below!
+// H-Queue - Surcharge des variables Bootstrap
+// On branche nos tokens (_colors, _fonts) sur Bootstrap 5.3.
 
-// General style
-$font-family-sans-serif: $body-font;
-$headings-font-family:   $headers-font;
-$body-bg:                $light-gray;
-$font-size-base:         1rem;
+// === TYPOGRAPHIE ===
+$font-family-sans-serif: $body-font; // Nunito
+$headings-font-family: $headers-font; // Baloo 2
 
-// Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+$font-size-base: 1rem; // 16px
+$font-weight-base: 600; // Body/Normal = Nunito SemiBold
+$line-height-base: 1.4; // 140%
 
-// Buttons & inputs' radius
-$border-radius-sm:            .0625rem;
-$border-radius:               .125rem;
-$border-radius-lg:            .25rem;
-$border-radius-xl:            .5rem;
-$border-radius-xxl:           1rem;
+$headings-font-weight: 700; // Bold
+$headings-line-height: 1.15; // 115%
 
-// Override other variables below!
+$h1-font-size: 1.75rem; // 28px — Heading/L
+$h2-font-size: 1.25rem; // 20px — Heading/M
+$h3-font-size: 1rem; // 16px — Heading/S
+
+// === COULEURS ===
+$body-bg: $background; // #FDFBF3
+$body-color: $brand; // navy — texte + titres
+
+// $primary / $secondary / $success : déjà définis dans _colors.scss (mêmes noms),
+// repris automatiquement par Bootstrap.
+// Le navy "brand" est mappé sur `dark` → .bg-dark / .text-bg-dark / .btn-dark en navy.
+$dark: $brand;
+
+$border-color: $border; // #EAE5D6
+
+// === RADIUS ===
+$border-radius: .5rem; // fallback (alerts, dropdowns…)
+$border-radius-lg: 1rem; // 16px
+$card-border-radius: 1rem; // cards = 16px
+$btn-border-radius: 50rem; // pill
+$input-border-radius: 50rem; // pill

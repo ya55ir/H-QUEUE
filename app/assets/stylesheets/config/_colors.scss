@@ -1,10 +1,25 @@
-// Define variables for your color scheme
+// H-Queue - Design tokens : COULEURS
+// Source de vérité des couleurs (noms alignés sur le Figma).
+// Branchées sur Bootstrap dans _bootstrap_variables.scss.
 
-// For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+// --- Marque ---
+$brand: #16324D; // navy — navbar, footer, titres, texte principal
+$primary: #F08424; // orange — CTA, counter, accents
+$secondary: #5A6B7C; // texte secondaire / sous-titres
+$tertiary: #8A97A5; // texte tertiaire / captions
+
+// --- Surfaces ---
+$background: #FDFBF3; // fond d'écran
+$white: #FFFFFF; // fond des cards
+$border: #EAE5D6; // bordures
+
+// --- États ---
+$success: #0F6E56;
+
+// --- Texte sur fond brand ---
+$text-on-brand: #FDFBF3;
+
+// --- Variantes "subtle" pour les badges (16%) ---
+$brand-subtle: rgba($brand, .16);
+$primary-subtle: rgba($primary, .16);
+$success-subtle: rgba($success, .16);
