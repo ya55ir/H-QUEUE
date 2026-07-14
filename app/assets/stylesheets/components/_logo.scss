@@ -1,0 +1,21 @@
+// Composant : LOGO "HQ"
+// H clair + Q orange. Prévu sur fond navy (navbar / footer).
+
+.logo {
+    font-family: $headers-font; // Baloo 2
+    font-weight: $font-weight-extra-bold;
+    font-size: 1.5rem; // 24px
+    line-height: 1;
+    letter-spacing: -.5px;
+}
+
+.logo-h {
+    color: $text-on-brand;
+}
+
+// clair (sur fond navy)
+.logo-q {
+    color: $primary;
+}
+
+// orange

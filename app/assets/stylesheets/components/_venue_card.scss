@@ -1,0 +1,38 @@
+// Composant : VENUE CARD (liste des venues, avec image à gauche et texte à droite)
+.venue-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; // l'image prend toute la hauteur (colle haut/bas)
+    padding: 0; // plus de marge autour de l'image
+    overflow: hidden; // l'image épouse le radius 16 de la .card
+}
+
+.venue-card-img {
+    width: 96px;
+    align-self: stretch; // colle l'image à gauche, en haut et en bas
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.venue-card-body {
+    // le texte, avec le padding
+    padding: .75rem;
+    min-width: 0;
+}
+
+.venue-card-name {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.venue-card-distance {
+    color: $tertiary;
+    font-size: .875rem;
+    font-weight: $font-weight-semibold;
+}
+
+.venue-card-wait {
+    color: $secondary;
+    font-size: .875rem;
+    margin-bottom: 0;
+}
