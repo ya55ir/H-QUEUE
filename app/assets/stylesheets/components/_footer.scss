@@ -1,0 +1,9 @@
+// Composant : FOOTER (baseline H-Queue sur fond navy)
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    background-color: $brand;
+    color: $text-on-brand;
+}

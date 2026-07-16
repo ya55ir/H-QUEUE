@@ -1,0 +1,5 @@
+// Layout : gouttières globales de page (Figma : 24 top/left/right, 48 bottom).
+// Appliqué sur le <main> du layout → toute nouvelle page en hérite automatiquement.
+.page {
+    padding: 1.5rem 1.5rem 3rem; // 24px 24px 48px
+}

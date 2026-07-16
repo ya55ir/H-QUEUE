@@ -10,13 +10,15 @@ Rails.application.routes.draw do
     resource :queue_entry, only: [:new, :create]
   end
 
-  resources :queue_entries, only: [:show] do
-    member do
-      get :confirmation
-      patch :confirm
-      patch :decline
-    end
-  end
+  #resources :queue_entries, only: [:show] do
+  #  member do
+  #    get :confirmation
+  #    patch :confirm
+  #    patch :decline
+  #  end
+  #end
 
-  get "manager", to: "manager#show"
+  #get "manager", to: "manager#show"
+# route qui exposent les composants front de l'app à destination des devs
+  get "style_guide", to: "pages#style_guide"
 end
