@@ -1,0 +1,25 @@
+<%# Venue card mutualisée.
+     Locals :
+       venue    (Venue) — attend name, photo_url, venue_type, avg_wait_minutes
+       distance (String/Number, optionnel) — distance en km, affichée à droite du nom
+     Usage : <%%= render "shared/venue_card", venue: venue, distance: "0.5" %> %>
+<%= link_to venue_path(venue), class: "card venue-card mb-2 text-decoration-none text-reset" do %>
+  <img src="<%= venue.photo_url.presence || "https://picsum.photos/id/292/160" %>"
+       alt="<%= venue.name %>" class="venue-card-img">
+  <div class="venue-card-body">
+    <div class="d-flex align-items-baseline gap-2">
+      <h3 class="venue-card-name"><%= venue.name %></h3>
+      <% if local_assigns[:distance].present? %>
+        <span class="venue-card-distance"><%= distance %> km</span>
+      <% end %>
+    </div>
+    <% if venue.venue_type.present? %>
+      <span class="badge-cuisine my-1 d-inline-block"><%= venue.venue_type %></span>
+    <% end %>
+    <% if venue.avg_wait_minutes.present? %>
+      <p class="caption mb-0">
+        <i class="fa-solid fa-user-group me-1"></i> ~ <%= venue.avg_wait_minutes %> min wait
+      </p>
+    <% end %>
+  </div>
+<% end %>

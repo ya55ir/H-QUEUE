@@ -1,0 +1,106 @@
+<%# Style guide : référence vivante des composants H-Queue. Mobile first (390px). %>
+<div style="max-width: 390px; margin: 0 auto;">
+  <%= render "shared/page_title", title: "Style Guide", subtitle: "H-Queue components reference." %>
+
+  <%# ---------- LOGO ---------- %>
+  <h2 class="h5 mt-4 mb-2">Logo</h2>
+  <div class="bg-dark p-3 rounded">
+    <span class="logo"><span class="logo-h">H</span><span class="logo-q">Q</span></span>
+  </div>
+
+  <%# ---------- BUTTONS ---------- %>
+  <h2 class="h5 mt-4 mb-2">Buttons</h2>
+  <div class="d-grid gap-2">
+    <button class="btn btn-primary">Join the virtual queue</button>
+    <button class="btn btn-outline-brand">See other venues</button>
+    <button class="btn btn-link">Forgot my password</button>
+  </div>
+
+  <%# ---------- FORM ---------- %>
+  <h2 class="h5 mt-4 mb-2">Form fields</h2>
+  <%# 1. Default, icons left & right, sans label %>
+  <p class="text-dark small mb-1">Default + left & right icons</p>
+  <div class="field-control mb-3">
+    <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
+    <input type="text" class="form-control" placeholder="75017 Paris">
+    <i class="fa-solid fa-location-crosshairs field-icon field-icon-right"></i>
+  </div>
+
+  <%# 2. Active, icons left & right, sans label %>
+  <p class="text-dark small mb-1">Active + left & right icons</p>
+  <div class="field-control mb-3">
+    <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
+    <input type="text" class="form-control is-active" value="75017 Paris" placeholder="75017 Paris">
+    <i class="fa-solid fa-circle-xmark field-icon field-icon-right"></i>
+  </div>
+
+  <%# 3. Default avec label, sans icône %>
+  <p class="text-dark small mb-1">Default + label</p>
+  <label class="form-label" for="guests">Number of guests</label>
+  <input type="text" id="guests" class="form-control mb-3" placeholder="How many are you?">
+
+  <%# 4. Filled avec label, téléphone %>
+  <p class="text-dark small mb-1">Filled + label</p>
+  <label class="form-label" for="phone_number">Phone number</label>
+  <input type="tel" id="phone_number" class="form-control" value="+33 6 12 34 56 78" placeholder="+33 6 12 34 56 78">
+
+  <%# ---------- BADGE ---------- %>
+  <h2 class="h5 mt-4 mb-2">Cuisine badge</h2>
+  <span class="badge-cuisine d-inline-block">French</span>
+  <span class="badge-cuisine d-inline-block">Italian</span>
+  <span class="badge-cuisine d-inline-block">Japanese</span>
+
+  <%# ---------- NAVBAR (partial) ---------- %>
+  <h2 class="h5 mt-4 mb-2">Navbar <small class="text-secondary">partial</small></h2>
+  <%= render "shared/navbar" %>
+
+  <%# ---------- FOOTER (partial) ---------- %>
+  <h2 class="h5 mt-4 mb-2">Footer <small class="text-secondary">partial</small></h2>
+  <%= render "shared/footer" %>
+
+  <%# ---------- PAGE TITLE (partial) ---------- %>
+  <h2 class="h5 mt-4 mb-2">Page title <small class="text-secondary">partial</small></h2>
+  <%= render "shared/page_title", title: "Find your spot", subtitle: "Search a venue and skip the line." %>
+
+  <%# ---------- COUNTER (partial) ---------- %>
+  <h2 class="h5 mt-4 mb-2">Counter <small class="text-secondary">partial</small></h2>
+  <%= render "shared/counter", count: 12, wait: 10 %>
+
+  <%# ---------- VENUE CARD (partial) ---------- %>
+  <h2 class="h5 mt-4 mb-2">Venue card <small class="text-secondary">partial</small></h2>
+  <% if @sample_venue %>
+    <p class="text-dark small mb-1">Default</p>
+    <%= render "shared/venue_card", venue: @sample_venue %>
+    <p class="text-dark small mb-1 mt-3">With distance</p>
+    <%= render "shared/venue_card", venue: @sample_venue, distance: "0.5" %>
+  <% else %>
+    <%# Pas de venue en base : rendu statique de démo. %>
+    <p class="text-dark small mb-1">Default</p>
+    <div class="card venue-card mb-2">
+      <img src="https://picsum.photos/id/292/160" alt="Le Wagon Bleu" class="venue-card-img">
+      <div class="venue-card-body">
+        <div class="d-flex align-items-baseline gap-2">
+          <h3 class="venue-card-name">Le Wagon Bleu</h3>
+        </div>
+        <span class="badge-cuisine my-1 d-inline-block">French</span>
+        <p class="caption mb-0">
+          <i class="fa-solid fa-user-group me-1"></i> ~ 10 min wait
+        </p>
+      </div>
+    </div>
+    <p class="text-dark small mb-1 mt-3">With distance</p>
+    <div class="card venue-card mb-2">
+      <img src="https://picsum.photos/id/292/160" alt="Le Wagon Bleu" class="venue-card-img">
+      <div class="venue-card-body">
+        <div class="d-flex align-items-baseline gap-2">
+          <h3 class="venue-card-name">Le Wagon Bleu</h3>
+          <span class="venue-card-distance">0.5 km</span>
+        </div>
+        <span class="badge-cuisine my-1 d-inline-block">French</span>
+        <p class="caption mb-0">
+          <i class="fa-solid fa-user-group me-1"></i> ~ 10 min wait
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

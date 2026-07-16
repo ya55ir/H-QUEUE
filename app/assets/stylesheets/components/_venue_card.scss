@@ -15,8 +15,13 @@
 }
 
 .venue-card-body {
-    // le texte, avec le padding
-    padding: .75rem;
+    // le texte : 8px (xs) haut/bas, 12px gauche/droite.
+    // Centré verticalement → padding symétrique, l'image épouse cette hauteur réduite.
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; // évite que les enfants (badge) s'étirent sur toute la largeur
+    padding: .5rem .75rem; // 8px 12px
     min-width: 0;
 }
 
@@ -26,13 +31,8 @@
 }
 
 .venue-card-distance {
-    color: $tertiary;
-    font-size: .875rem;
-    font-weight: $font-weight-semibold;
-}
-
-.venue-card-wait {
     color: $secondary;
-    font-size: .875rem;
-    margin-bottom: 0;
+    font-size: .8125rem; // caption 13px
+    line-height: 1.2;
+    white-space: nowrap; // "0.5 km" ne passe pas à la ligne
 }

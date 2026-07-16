@@ -1,0 +1,10 @@
+<%# Page title mutualisé.
+     Locals :
+       title    (String, requis)
+       subtitle (String, optionnel) %>
+<div class="mb-4">
+  <h1 class="mb-1"><%= title %></h1>
+  <% if local_assigns[:subtitle].present? %>
+    <p class="text-secondary mb-0"><%= subtitle %></p>
+  <% end %>
+</div>

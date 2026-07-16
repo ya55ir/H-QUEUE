@@ -1,12 +1,9 @@
-.navbar-lewagon {
+// Composant : NAVBAR (logo HQ sur fond navy)
+.navbar-hqueue {
   justify-content: space-between;
-  background: white;
+  background-color: $brand;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-hqueue .nav-link {
+  color: $text-on-brand;
 }
