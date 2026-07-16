@@ -24,8 +24,9 @@ label,
         color: $tertiary;
     }
 
-    &:focus {
-        // Active
+    // Active : bordure orange au focus (.is-active = simulation pour le style guide).
+    &:focus,
+    &.is-active {
         border-color: $primary;
         box-shadow: 0 0 0 .2rem $primary-subtle;
     }
