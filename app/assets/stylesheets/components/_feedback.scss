@@ -1,0 +1,19 @@
+.feedback {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+
+    &-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 1.5rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background-color: $primary-bg-subtle;
+
+        i {
+            font-size: 2rem; // 32px
+            color: $primary;
+        }
+    }
+}

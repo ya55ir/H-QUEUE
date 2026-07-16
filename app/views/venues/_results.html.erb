@@ -1,0 +1,10 @@
+<% if query.blank? %>
+  <%= render "shared/feedback",
+        icon: "store",
+        title: "No venues yet",
+        subtitle: "Search a venue or share your location to see venues around you." %>
+<% elsif venues.any? %>
+  <% venues.each do |venue| %>
+    <%= render "shared/venue_card", venue: venue %>
+  <% end %>
+<% end %>
