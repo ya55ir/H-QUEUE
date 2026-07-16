@@ -1,0 +1,7 @@
+<h1>Join the queue — <%= @venue.name %></h1>
+
+<%= form_with model: @queue_entry, url: venue_queue_entry_path(@venue), local: true do |f| %>
+  <%= f.label :party_size, "Number of people" %>
+  <%= f.number_field :party_size %>
+  <%= f.submit "Join the queue" %>
+<% end %>
