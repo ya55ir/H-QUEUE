@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_16_125215) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_17_090306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "queue_entries", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.string "name"
     t.datetime "notified_at"
     t.integer "party_size"
+    t.string "phone_number"
     t.integer "status"
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "venue_id", null: false
     t.index ["user_id"], name: "index_queue_entries_on_user_id"
     t.index ["venue_id"], name: "index_queue_entries_on_venue_id"

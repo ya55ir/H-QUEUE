@@ -1,10 +1,12 @@
 <%# Venue card mutualisee.
      Locals :
-       venue    (Venue) — attend name, photo_url, venue_type, avg_wait_minutes
-       distance (String/Number, optionnel) — distance en km, affichee a droite du nom
+       venue       (Venue) — attend name, photo_url, venue_type, avg_wait_minutes
+       distance    (String/Number, optionnel) — distance en km, affichee a droite du nom
+       path        (String, optionnel) — destination de la carte (defaut venue_path)
+       queue_count (Integer, optionnel) — nb de groupes en attente, remplace le caption d'attente moyenne
      Usage : render "shared/venue_card", venue: venue, distance: "0.5"
 %>
-<%= link_to venue_path(venue), class: "card venue-card mb-2 text-decoration-none text-reset" do %>
+<%= link_to (local_assigns[:path] || venue_path(venue)), class: "card venue-card mb-2 text-decoration-none text-reset" do %>
   <img src="<%= venue.photo_url.presence || "https://picsum.photos/id/292/160" %>"
        alt="<%= venue.name %>" class="venue-card-img">
   <div class="venue-card-body">
@@ -17,7 +19,11 @@
     <% if venue.venue_type.present? %>
       <span class="badge-cuisine my-1 d-inline-block"><%= venue.venue_type %></span>
     <% end %>
-    <% if venue.avg_wait_minutes.present? %>
+    <% if local_assigns[:queue_count].present? %>
+      <p class="caption mb-0">
+        <i class="fa-solid fa-user-group me-1"></i> <%= pluralize(queue_count, "group") %> waiting
+      </p>
+    <% elsif venue.avg_wait_minutes.present? %>
       <p class="caption mb-0">
         <i class="fa-solid fa-user-group me-1"></i> ~ <%= venue.avg_wait_minutes %> min wait
       </p>

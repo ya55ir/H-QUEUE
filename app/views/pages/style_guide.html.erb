@@ -80,6 +80,8 @@
     <%= render "shared/venue_card", venue: @sample_venue %>
     <p class="text-dark small mb-1 mt-3">With distance</p>
     <%= render "shared/venue_card", venue: @sample_venue, distance: "0.5" %>
+    <p class="text-dark small mb-1 mt-3">With queue count (manager view)</p>
+    <%= render "shared/venue_card", venue: @sample_venue, path: "#", queue_count: 4 %>
   <% else %>
     <%# Pas de venue en base : rendu statique de démo. %>
     <p class="text-dark small mb-1">Default</p>
