@@ -7,4 +7,9 @@
   <% venues.each do |venue| %>
     <%= render "shared/venue_card", venue: venue %>
   <% end %>
+<% else %>
+  <%= render "shared/feedback",
+        icon: "magnifying-glass",
+        title: "No venues found",
+        subtitle: "Try another name or address." %>
 <% end %>

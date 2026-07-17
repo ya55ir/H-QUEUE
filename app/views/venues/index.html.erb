@@ -6,7 +6,7 @@
   <div class="field-control mb-3">
     <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
     <%= f.text_field :query, value: params[:query],
-          class: "form-control", placeholder: "Search a venue…",
+          class: "form-control", placeholder: "Search by name or address...",
           autocomplete: "off",
           data: { action: "input->search#submit" } %>
   </div>
