@@ -38,3 +38,16 @@
     --bs-btn-hover-color: #{$primary};
     text-decoration: none;
 }
+
+// Back : lien léger, texte crème, pour ressortir en overlay sur une image.
+.btn-back {
+    color: $text-on-brand;
+    font-family: $headers-font; // Baloo 2
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+
+    &:hover {
+        color: $text-on-brand;
+        opacity: .85;
+    }
+}

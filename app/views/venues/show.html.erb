@@ -1,2 +1,38 @@
+<%# Fiche venue — issue #64 %>
+<div class="venue-infos-hero mb-3">
+  <img src="<%= @venue.photo_url.presence || "https://picsum.photos/id/292/600/400" %>"
+       alt="<%= @venue.name %>" class="venue-infos-img">
+  <%= link_to venues_path, class: "btn-back venue-infos-back" do %>
+    <i class="fa-solid fa-arrow-left me-2"></i>Back
+  <% end %>
+</div>
+
 <h1><%= @venue.name %></h1>
-<p><%= @venue.description %></p>
+
+<% if @venue.venue_type.present? %>
+  <span class="badge-cuisine d-inline-block mb-3"><%= @venue.venue_type %></span>
+<% end %>
+
+<ul class="list-unstyled">
+  <% if @venue.address.present? %>
+    <li class="d-flex align-items-start gap-2 mb-2">
+      <i class="fa-solid fa-location-dot text-primary mt-1"></i>
+      <span><%= @venue.address %></span>
+    </li>
+  <% end %>
+  <% if @venue.opening_hours.present? %>
+    <li class="d-flex align-items-start gap-2 mb-2">
+      <i class="fa-solid fa-clock text-primary mt-1"></i>
+      <span><%= simple_format(@venue.opening_hours) %></span>
+    </li>
+  <% end %>
+</ul>
+
+<% if @venue.description.present? %>
+  <p class="text-secondary"><%= @venue.description %></p>
+<% end %>
+
+<div class="venue-infos-cta">
+  <%= link_to "Join the virtual queue", new_venue_queue_entry_path(@venue),
+        class: "btn btn-primary w-100" %>
+</div>
