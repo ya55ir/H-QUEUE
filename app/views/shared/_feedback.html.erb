@@ -1,0 +1,15 @@
+<%# Feedback mutualise : icone + titre + sous-titre, centre.
+    Utilise sur venues-empty-list, queue-joined, arrival-confirmation, arrival-confirmed.
+    Locals :
+      icon     (String) — nom d'icone Font Awesome, ex. "store"
+      title    (String) — titre principal (Heading 2)
+      subtitle (String) — texte secondaire (Caption)
+    Usage : render "shared/feedback", icon:, title:, subtitle:
+%>
+<div class="feedback">
+  <div class="feedback-icon">
+    <i class="fa-solid fa-<%= icon %>"></i>
+  </div>
+  <h2 class="mb-2"><%= title %></h2>
+  <p class="caption mb-0"><%= subtitle %></p>
+</div>

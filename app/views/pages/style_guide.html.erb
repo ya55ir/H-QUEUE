@@ -66,6 +66,13 @@
   <h2 class="h5 mt-4 mb-2">Counter <small class="text-secondary">partial</small></h2>
   <%= render "shared/counter", count: 12, wait: 10 %>
 
+  <%# ---------- FEEDBACK (partial) ---------- %>
+  <h2 class="h5 mt-4 mb-2">Feedback <small class="text-secondary">partial</small></h2>
+  <%= render "shared/feedback",
+        icon: "store",
+        title: "No venues yet",
+        subtitle: "Search a venue or share your location to see venues around you." %>
+
   <%# ---------- VENUE CARD (partial) ---------- %>
   <h2 class="h5 mt-4 mb-2">Venue card <small class="text-secondary">partial</small></h2>
   <% if @sample_venue %>

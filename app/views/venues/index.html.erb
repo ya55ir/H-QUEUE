@@ -1,4 +1,17 @@
-<h1>Venues</h1>
-<% @venues.each do |venue| %>
-  <p><%= link_to venue.name, venue_path(venue) %></p>
+<%= render "shared/page_title", title: "Find your spot",
+      subtitle: "Search a venue and skip the line." %>
+
+<%= form_with url: venues_path, method: :get,
+      data: { turbo_frame: "venues_results", controller: "search" } do |f| %>
+  <div class="field-control mb-3">
+    <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
+    <%= f.text_field :query, value: params[:query],
+          class: "form-control", placeholder: "Search a venue…",
+          autocomplete: "off",
+          data: { action: "input->search#submit" } %>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "venues_results", target: "_top" do %>
+  <%= render "venues/results", venues: @venues, query: params[:query] %>
 <% end %>

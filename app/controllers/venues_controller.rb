@@ -1,9 +1,13 @@
 class VenuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :qr_code]
+  skip_before_action :authenticate_user!, only: %i[index show qr_code]
 
   def index
-    @venues = Venue.all
-    @venues = @venues.where("name ILIKE ?", "%#{params[:query]}%") if params[:query].present?
+    @venues = if params[:query].present?
+                Venue.where("name ILIKE ?", "%#{params[:query]}%")
+              else
+                # Ne rien afficher par défaut si aucun paramètre de recherche n'est fourni
+                Venue.none
+              end
   end
 
   def show
