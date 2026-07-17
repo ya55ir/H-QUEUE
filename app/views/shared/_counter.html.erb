@@ -1,13 +1,16 @@
-<%# Counter card mutualisée : "X people ahead of you" + temps d'attente moyen.
+<%# Counter card mutualisée : un chiffre + un libellé + temps d'attente moyen.
      Locals :
-       count (Integer) — nombre de personnes devant en file
-       wait  (Integer) — temps d'attente moyen en minutes %>
-<div class="card text-center mb-2">
+       count (Integer) — le chiffre affiché en gros
+       label (String) — libellé sous le chiffre, adapté au contexte
+       wait  (Integer, optionnel) — temps d'attente moyen en minutes, masqué si nil %>
+<div class="card text-center mb-4">
   <div class="card-body">
     <div class="counter"><%= count %></div>
-    <p class="text-dark mb-0">people ahead of you</p>
-    <p class="caption mb-0 mt-1">
-      <i class="fa-solid fa-user-group me-1"></i> ~ <%= wait %> min wait
-    </p>
+    <p class="text-dark mb-0"><%= label %></p>
+    <% if local_assigns[:wait].present? %>
+      <p class="caption mb-0 mt-1">
+        <i class="fa-solid fa-user-group me-1"></i> ~ <%= wait %> min wait
+      </p>
+    <% end %>
   </div>
 </div>

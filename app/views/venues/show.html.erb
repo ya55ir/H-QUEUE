@@ -32,6 +32,11 @@
   <p class="text-secondary"><%= @venue.description %></p>
 <% end %>
 
+<%= render "shared/counter",
+      count: @queue_count,
+      label: "#{'group'.pluralize(@queue_count)} in the queue",
+      wait: @venue.avg_wait_minutes %>
+
 <div class="venue-infos-cta">
   <%= link_to "Join the virtual queue", new_venue_queue_entry_path(@venue),
         class: "btn btn-primary w-100" %>

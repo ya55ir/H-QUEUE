@@ -1,20 +1,23 @@
 <% if @queue_entry.waiting? %>
   <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Grab a drink nearby, we've got your spot" %>
 
-  <div class="text-center mb-4">
-    <p>You are in the virtual queue.</p>
-    <p class="text-secondary">You will receive a notification 10 minutes before your table is ready!</p>
-  </div>
+  <%= render "shared/feedback",
+        icon: "circle-check",
+        title: "You are in the virtual queue",
+        subtitle: "You will receive a notification 10 minutes before your table is ready!" %>
 
-  <%= render "shared/counter", count: @queue_entry.tables_ahead, wait: @queue_entry.venue.avg_wait_minutes %>
+  <%= render "shared/counter",
+        count: @queue_entry.tables_ahead,
+        label: "#{'group'.pluralize(@queue_entry.tables_ahead)} ahead of you",
+        wait: @queue_entry.venue.avg_wait_minutes %>
 
 <% elsif @queue_entry.notified? %>
   <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Almost there, are you coming?" %>
 
-  <div class="text-center mb-4">
-    <p>Your table will be ready in <%= @queue_entry.venue.avg_wait_minutes %> minutes.</p>
-    <p class="text-secondary">Please confirm your arrival.</p>
-  </div>
+  <%= render "shared/feedback",
+        icon: "chair",
+        title: "Your table will be ready in #{@queue_entry.venue.avg_wait_minutes} minutes",
+        subtitle: "Please confirm your arrival." %>
 
   <%= button_to "Confirm", confirm_queue_entry_path(@queue_entry), method: :patch, class: "btn btn-primary w-100 mb-2" %>
   <%= button_to "Cancel", decline_queue_entry_path(@queue_entry), method: :patch, class: "btn btn-outline-brand w-100" %>
@@ -22,8 +25,8 @@
 <% elsif @queue_entry.confirmed? %>
   <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "See you in a minute!" %>
 
-  <div class="text-center">
-    <p>Thank you <%= @queue_entry.name.presence || @queue_entry.user&.first_name %>.</p>
-    <p class="text-secondary">Your table is waiting for you.</p>
-  </div>
+  <%= render "shared/feedback",
+        icon: "utensils",
+        title: "Thank you #{@queue_entry.name.presence || @queue_entry.user&.first_name}",
+        subtitle: "Your table is waiting for you." %>
 <% end %>
