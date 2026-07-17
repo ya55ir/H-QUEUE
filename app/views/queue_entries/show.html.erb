@@ -1,3 +1,3 @@
-<h1>Your spot in the queue</h1>
-<p>Status: <%= @queue_entry.status %></p>
-<p>People ahead of you: <%= @queue_entry.tables_ahead %></p>
+<h1><%= @venue.name %></h1>
+<p><%= @venue.description %></p>
+<%= link_to "Join the queue", new_venue_queue_entry_path(@venue) %>
