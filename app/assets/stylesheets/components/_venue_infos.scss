@@ -1,0 +1,41 @@
+// _venue_infos.scss
+// Hero : image pleine largeur collée sous la navbar.
+// Déborde les gouttières de .page (24px haut/gauche/droite).
+.venue-infos-hero {
+    position: relative;
+    width: calc(100% + 3rem);
+    margin: -1.5rem -1.5rem 0;
+}
+
+// Léger dégradé sombre en haut → lisibilité du lien Back sur photo claire
+.venue-infos-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 96px;
+    background: linear-gradient(to bottom, rgba($brand, .45), transparent);
+    pointer-events: none;
+}
+
+.venue-infos-img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+// Position du lien Back en overlay, haut-gauche (apparence : .btn-back)
+.venue-infos-back {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+}
+
+.venue-infos-cta {
+    position: sticky;
+    bottom: 16px;
+    margin-top: 24px;
+}

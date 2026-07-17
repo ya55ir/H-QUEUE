@@ -4,6 +4,12 @@
   background-color: $brand;
 }
 
+// Gouttières alignées sur la page (Figma : 24px gauche/droite)
+.navbar-hqueue .container-fluid {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .navbar-hqueue .nav-link {
   color: $text-on-brand;
 }
