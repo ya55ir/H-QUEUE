@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
-  #get "manager", to: "manager#show"
+  namespace :manager do
+    resources :venues, only: %i[index show]
+  end
+
 # route qui exposent les composants front de l'app à destination des devs
   get "style_guide", to: "pages#style_guide"
 end

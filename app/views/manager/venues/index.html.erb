@@ -1,0 +1,14 @@
+<%= render "shared/page_title", title: "Welcome Venue Manager", subtitle: "Select your venue" %>
+
+<h2 class="h5 mb-3">Venues (<%= @venues.count %>)</h2>
+
+<% if @venues.any? %>
+  <% @venues.each do |venue| %>
+    <%= render "shared/venue_card", venue: venue,
+          path: manager_venue_path(venue),
+          queue_count: venue.queue_entries.waiting.count %>
+  <% end %>
+<% else %>
+  <%= render "shared/feedback", icon: "store", title: "No venues yet",
+        subtitle: "Ask an admin to grant you access to a venue." %>
+<% end %>
