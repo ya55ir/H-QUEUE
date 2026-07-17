@@ -1,7 +1,20 @@
-<h1>Join the queue — <%= @venue.name %></h1>
+<%= render "shared/page_title", title: @venue.name, subtitle: "Let's get you settled" %>
 
 <%= form_with model: @queue_entry, url: venue_queue_entry_path(@venue), local: true do |f| %>
-  <%= f.label :party_size, "Number of people" %>
-  <%= f.number_field :party_size %>
-  <%= f.submit "Join the queue" %>
+  <div class="mb-3">
+    <%= f.label :name, "Name", class: "form-label" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Marcel" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :phone_number, "Phone number", class: "form-label" %>
+    <%= f.telephone_field :phone_number, class: "form-control", placeholder: "+33 6 24 98 66" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :party_size, "Number of guests", class: "form-label" %>
+    <%= f.number_field :party_size, class: "form-control", placeholder: "How many are you?" %>
+  </div>
+
+  <%= f.submit "Confirm", class: "btn btn-primary w-100" %>
 <% end %>

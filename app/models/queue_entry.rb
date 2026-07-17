@@ -1,10 +1,11 @@
 class QueueEntry < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :venue
 
   enum :status, { waiting: 0, notified: 1, confirmed: 2, seated: 3, cancelled: 4 }
 
   validates :party_size, presence: true, numericality: { greater_than: 0 }
+  validates :name, :phone_number, presence: true, if: -> { user.nil? }
 
   # Nombre de groupes de même taille arrivés avant celui-ci, dans le même venue
   def tables_ahead
