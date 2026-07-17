@@ -7,6 +7,7 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
+    @queue_count = @venue.current_queue_count
   end
 
   def qr_code
