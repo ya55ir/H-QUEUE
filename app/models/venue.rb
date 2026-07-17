@@ -17,4 +17,8 @@ class Venue < ApplicationRecord
     where("name ILIKE :pattern OR address ILIKE :pattern", pattern: pattern)
       .order(:name)
   end
+
+  def current_queue_count
+    queue_entries.where(status: :waiting).count
+  end
 end
