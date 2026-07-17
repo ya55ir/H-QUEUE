@@ -9,7 +9,9 @@
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link p-0" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://i.pravatar.cc/56", class: "avatar avatar-bordered", alt: "Account" %>
+           <span class="avatar" role="img" aria-label="Account">
+            <%= current_user.email.first %>
+          </span>
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
