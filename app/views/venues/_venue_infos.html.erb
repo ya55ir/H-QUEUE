@@ -1,0 +1,38 @@
+<div class="venue-infos-hero mb-3">
+  <% if venue.photo_url.present? %>
+    <img src="<%= venue.photo_url %>"
+         alt="<%= venue.name %>" class="venue-infos-img">
+  <% else %>
+    <div class="venue-infos-img venue-infos-img--placeholder">
+      <i class="fa-solid fa-utensils"></i>
+    </div>
+  <% end %>
+  <%= link_to venues_path, class: "btn-back venue-infos-back" do %>
+    <i class="fa-solid fa-arrow-left me-2"></i>Back
+  <% end %>
+</div>
+
+<h1><%= venue.name %></h1>
+
+<% if venue.venue_type.present? %>
+  <span class="badge-cuisine d-inline-block mb-3"><%= venue.venue_type %></span>
+<% end %>
+
+<ul class="list-unstyled">
+  <% if venue.address.present? %>
+    <li class="d-flex align-items-start gap-2 mb-2">
+      <i class="fa-solid fa-location-dot text-primary mt-1"></i>
+      <span><%= venue.address %></span>
+    </li>
+  <% end %>
+  <% if venue.opening_hours.present? %>
+    <li class="d-flex align-items-start gap-2 mb-2">
+      <i class="fa-solid fa-clock text-primary mt-1"></i>
+      <span><%= simple_format(venue.opening_hours) %></span>
+    </li>
+  <% end %>
+</ul>
+
+<% if venue.description.present? %>
+  <p class="text-secondary"><%= venue.description %></p>
+<% end %>
