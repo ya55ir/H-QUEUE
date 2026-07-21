@@ -2,6 +2,9 @@ class Venue < ApplicationRecord
   has_many :table_types, dependent: :destroy
   has_many :queue_entries, dependent: :destroy
 
+  geocoded_by :address # active near / distance sur les colonnes latitude & longitude
+  NEARBY_RADIUS_KM = 1 # distance de recherche par défaut
+
   validates :name, :address, presence: true
   validates :avg_wait_minutes, numericality: { greater_than: 0 }, allow_nil: true
 
@@ -20,5 +23,15 @@ class Venue < ApplicationRecord
 
   def current_queue_count
     queue_entries.where(status: :waiting).count
+  end
+
+  # Recherche générique des venues autour d'une position (latitude, longitude) dans une distance de NEARBY_RADIUS_KM.
+  def self.nearby(latitude, longitude)
+    near([latitude, longitude], NEARBY_RADIUS_KM, units: :km)
+  end
+
+  # Recherche des venues autour d'un venue donné, ce venue étant exclu des résultats.
+  def self.nearby_of(venue)
+    nearby(venue.latitude, venue.longitude).excluding(venue)
   end
 end
