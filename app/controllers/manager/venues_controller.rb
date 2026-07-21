@@ -8,6 +8,11 @@ module Manager
 
     def show
       @venue = Venue.find(params[:id])
+      @queue_entries_by_status = {
+        waiting: @venue.queue_entries.waiting.order(:created_at),
+        notified: @venue.queue_entries.notified.order(:created_at),
+        confirmed: @venue.queue_entries.confirmed.order(:created_at)
+      }
     end
 
     private

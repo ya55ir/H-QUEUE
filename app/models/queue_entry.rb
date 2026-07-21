@@ -14,4 +14,8 @@ class QueueEntry < ApplicationRecord
          .where("created_at < ?", created_at)
          .count
   end
+
+  def display_name
+    name.presence || [user&.first_name, user&.last_name].compact.join(" ")
+  end
 end
