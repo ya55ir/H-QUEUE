@@ -7,7 +7,7 @@
     margin: -1.5rem -1.5rem 0;
 }
 
-// Léger dégradé sombre en haut → lisibilité du lien Back sur photo claire
+// Léger dégradé sombre en haut pour améliorer lisibilité du lien Back sur photo claire
 .venue-infos-hero::before {
     content: "";
     position: absolute;
@@ -24,6 +24,16 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+
+// Si pas de photo pour le venue, on affiche un placeholder gris avec une icône centrée
+.venue-infos-img--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $tertiary;
+    color: $white;
+    font-size: 2.5rem;
 }
 
 // Position du lien Back en overlay, haut-gauche (apparence : .btn-back)
