@@ -1,7 +1,5 @@
 module Manager
-  class VenuesController < ApplicationController
-    before_action :ensure_manager!
-
+  class VenuesController < Manager::ApplicationController
     def index
       @venues = Venue.all
     end
@@ -13,12 +11,7 @@ module Manager
         notified: @venue.queue_entries.notified.order(:created_at),
         confirmed: @venue.queue_entries.confirmed.order(:created_at)
       }
-    end
-
-    private
-
-    def ensure_manager!
-      redirect_to root_path, alert: "Accès réservé aux managers" unless current_user.is_manager?
+      @next_entry = @queue_entries_by_status[:waiting].first
     end
   end
 end

@@ -20,6 +20,12 @@ Rails.application.routes.draw do
 
   namespace :manager do
     resources :venues, only: %i[index show]
+
+    resources :queue_entries, only: [] do
+      member do
+        patch :notify
+      end
+    end
   end
 
 # route qui exposent les composants front de l'app à destination des devs
