@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   root "venues#index"
 
+  # Render dynamic PWA files from app/views/pwa/* (linked in shared/_head)
+  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+
   resources :venues, only: [:index, :show] do
     member do
       get :qr_code
