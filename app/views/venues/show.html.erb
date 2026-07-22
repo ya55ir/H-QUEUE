@@ -5,7 +5,9 @@
       label: "#{'group'.pluralize(@queue_count)} in the queue",
       wait: @venue.avg_wait_minutes %>
 
-<div class="venue-infos-cta">
+<div class="d-grid gap-2">
   <%= link_to "Join the virtual queue", new_venue_queue_entry_path(@venue),
         class: "btn btn-primary w-100" %>
+  <%= link_to "See other venues", venues_path(near_venue_id: @venue.id),
+        class: "btn btn-outline-brand w-100" %>
 </div>

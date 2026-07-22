@@ -5,7 +5,7 @@
       data: { turbo_frame: "venues_results", controller: "search" } do |f| %>
   <div class="field-control mb-3">
     <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
-    <%= f.text_field :query, value: params[:query],
+    <%= f.text_field :query, value: @query,
           class: "form-control", placeholder: "Search by name or address...",
           autocomplete: "off",
           data: { action: "input->search#submit" } %>
@@ -13,5 +13,5 @@
 <% end %>
 
 <%= turbo_frame_tag "venues_results", target: "_top" do %>
-  <%= render "venues/results", venues: @venues, query: params[:query] %>
+  <%= render "venues/results", venues: @venues, query: @query, near: @near %>
 <% end %>
