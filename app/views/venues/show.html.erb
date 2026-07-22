@@ -1,3 +1,9 @@
+<% content_for :head do %>
+  <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+<% end %>
+
+<%= turbo_stream_from @venue %>
+
 <%= render "venue_infos", venue: @venue %>
 
 <%= render "shared/counter",
