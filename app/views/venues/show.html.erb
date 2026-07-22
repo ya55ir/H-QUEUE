@@ -8,8 +8,8 @@
 
 <%= render "shared/counter",
       count: @queue_count,
-      label: "#{'group'.pluralize(@queue_count)} in the queue",
-      wait: @venue.avg_wait_minutes %>
+      label: @queue_count.positive? ? "#{'group'.pluralize(@queue_count)} in the queue" : "No wait — come on in!",
+      wait: (@venue.avg_wait_minutes if @queue_count.positive?) %>
 
 <div class="d-grid gap-2">
   <%= link_to "Join the virtual queue", new_venue_queue_entry_path(@venue),
