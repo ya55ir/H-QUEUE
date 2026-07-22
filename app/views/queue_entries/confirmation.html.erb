@@ -8,7 +8,7 @@
 
   <%= render "shared/counter",
         count: @queue_entry.tables_ahead,
-        label: "#{'group'.pluralize(@queue_entry.tables_ahead)} ahead of you",
+        label: @queue_entry.tables_ahead.positive? ? "#{'group'.pluralize(@queue_entry.tables_ahead)} ahead of you" : "You're next!",
         wait: @queue_entry.venue.avg_wait_minutes %>
 
 <% elsif @queue_entry.notified? %>
