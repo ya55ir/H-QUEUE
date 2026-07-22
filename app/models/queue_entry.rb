@@ -7,6 +7,8 @@ class QueueEntry < ApplicationRecord
   validates :party_size, presence: true, numericality: { greater_than: 0 }
   validates :name, :phone_number, presence: true, if: -> { user.nil? }
 
+  after_commit :broadcast_queue_refresh, on: %i[create update]
+
   # Nombre de groupes de même taille arrivés avant celui-ci, dans le même venue
   def tables_ahead
     venue.queue_entries
@@ -26,5 +28,12 @@ class QueueEntry < ApplicationRecord
   # Point de départ du chrono affiché sur la carte : depuis la notification si notifié, sinon depuis l'arrivée
   def waiting_since
     notified_at || created_at
+  end
+
+  private
+
+  # Signale à tous les clients qui consultent la page du venue de se rafraîchir
+  def broadcast_queue_refresh
+    broadcast_refresh_to(venue)
   end
 end
