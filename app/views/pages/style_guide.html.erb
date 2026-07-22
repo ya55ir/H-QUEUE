@@ -47,8 +47,6 @@
   <%# ---------- BADGE ---------- %>
   <h2 class="h5 mt-4 mb-2">Cuisine badge</h2>
   <span class="badge-cuisine d-inline-block">French</span>
-  <span class="badge-cuisine d-inline-block">Italian</span>
-  <span class="badge-cuisine d-inline-block">Japanese</span>
 
   <%# ---------- BADGE STATUS ---------- %>
   <h2 class="h5 mt-4 mb-2">Queue status badge</h2>
@@ -70,7 +68,7 @@
 
   <%# ---------- COUNTER (partial) ---------- %>
   <h2 class="h5 mt-4 mb-2">Counter <small class="text-secondary">partial</small></h2>
-  <%= render "shared/counter", count: 12, wait: 10 %>
+  <%= render "shared/counter", count: 12, label: "groups in the queue", wait: 10 %>
 
   <%# ---------- FEEDBACK (partial) ---------- %>
   <h2 class="h5 mt-4 mb-2">Feedback <small class="text-secondary">partial</small></h2>
@@ -81,41 +79,12 @@
 
   <%# ---------- VENUE CARD (partial) ---------- %>
   <h2 class="h5 mt-4 mb-2">Venue card <small class="text-secondary">partial</small></h2>
-  <% if @sample_venue %>
+    <p class="text-dark small mb-1 mt-3">Without photo</p>
+    <%= render "shared/venue_card", venue: @sample_venue_without_photo, path: "#" %>
     <p class="text-dark small mb-1">Default</p>
     <%= render "shared/venue_card", venue: @sample_venue %>
     <p class="text-dark small mb-1 mt-3">With distance</p>
     <%= render "shared/venue_card", venue: @sample_venue, distance: "0.5" %>
     <p class="text-dark small mb-1 mt-3">With queue count (manager view)</p>
     <%= render "shared/venue_card", venue: @sample_venue, path: "#", queue_count: 4 %>
-  <% else %>
-    <%# Pas de venue en base : rendu statique de démo. %>
-    <p class="text-dark small mb-1">Default</p>
-    <div class="card venue-card mb-2">
-      <img src="https://picsum.photos/id/292/160" alt="Le Wagon Bleu" class="venue-card-img">
-      <div class="venue-card-body">
-        <div class="d-flex align-items-baseline gap-2">
-          <h3 class="venue-card-name">Le Wagon Bleu</h3>
-        </div>
-        <span class="badge-cuisine my-1 d-inline-block">French</span>
-        <p class="caption mb-0">
-          <i class="fa-solid fa-user-group me-1"></i> ~ 10 min wait
-        </p>
-      </div>
-    </div>
-    <p class="text-dark small mb-1 mt-3">With distance</p>
-    <div class="card venue-card mb-2">
-      <img src="https://picsum.photos/id/292/160" alt="Le Wagon Bleu" class="venue-card-img">
-      <div class="venue-card-body">
-        <div class="d-flex align-items-baseline gap-2">
-          <h3 class="venue-card-name">Le Wagon Bleu</h3>
-          <span class="venue-card-distance">0.5 km</span>
-        </div>
-        <span class="badge-cuisine my-1 d-inline-block">French</span>
-        <p class="caption mb-0">
-          <i class="fa-solid fa-user-group me-1"></i> ~ 10 min wait
-        </p>
-      </div>
-    </div>
-  <% end %>
 </div>

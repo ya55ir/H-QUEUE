@@ -7,8 +7,13 @@
      Usage : render "shared/venue_card", venue: venue, distance: "0.5"
 %>
 <%= link_to (local_assigns[:path] || venue_path(venue)), class: "card venue-card mb-2 text-decoration-none text-reset" do %>
-  <img src="<%= venue.photo_url.presence || "https://picsum.photos/id/292/160" %>"
-       alt="<%= venue.name %>" class="venue-card-img">
+  <% if venue.photo_url.present? %>
+    <img src="<%= venue.photo_url %>" alt="<%= venue.name %>" class="venue-card-img">
+  <% else %>
+    <div class="venue-card-img venue-card-img--placeholder">
+      <i class="fa-solid fa-utensils"></i>
+    </div>
+  <% end %>
   <div class="venue-card-body">
     <div class="d-flex align-items-baseline gap-2">
       <h3 class="venue-card-name"><%= venue.name %></h3>
@@ -30,3 +35,4 @@
     <% end %>
   </div>
 <% end %>
+

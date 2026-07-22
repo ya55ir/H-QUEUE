@@ -28,6 +28,6 @@ Rails.application.routes.draw do
     end
   end
 
-# route qui exposent les composants front de l'app à destination des devs
+# Expose les composants front de l'app à destination des devs
   get "style_guide", to: "pages#style_guide"
 end

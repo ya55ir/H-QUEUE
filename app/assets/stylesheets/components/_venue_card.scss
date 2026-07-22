@@ -9,9 +9,18 @@
 
 .venue-card-img {
     width: 96px;
-    align-self: stretch; // colle l'image à gauche, en haut et en bas
+    height: 96px; // fixe la hauteur : l'image ne dicte plus celle de la card
     object-fit: cover;
     flex-shrink: 0;
+}
+
+.venue-card-img--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $tertiary;
+    color: $white;
+    font-size: 1.5rem;
 }
 
 .venue-card-body {
