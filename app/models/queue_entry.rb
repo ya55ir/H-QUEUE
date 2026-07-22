@@ -14,4 +14,17 @@ class QueueEntry < ApplicationRecord
          .where("created_at < ?", created_at)
          .count
   end
+
+  def display_name
+    name.presence || [user&.first_name, user&.last_name].compact.join(" ")
+  end
+
+  def display_phone
+    phone_number.presence || user&.phone_number
+  end
+
+  # Point de départ du chrono affiché sur la carte : depuis la notification si notifié, sinon depuis l'arrivée
+  def waiting_since
+    notified_at || created_at
+  end
 end

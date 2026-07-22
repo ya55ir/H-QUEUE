@@ -1,1 +1,20 @@
 <%= render "shared/page_title", title: @venue.name, subtitle: "Manage your virtual queue" %>
+
+<% if @next_entry %>
+  <%= button_to "Notify #{@next_entry.display_name.split.first}",
+        notify_manager_queue_entry_path(@next_entry),
+        method: :patch,
+        class: "btn btn-primary w-100 mb-4" %>
+<% end %>
+
+<% @queue_entries_by_status.each do |status, entries| %>
+  <h2 class="h5 mb-2"><%= status.to_s.capitalize %> (<%= entries.size %>)</h2>
+
+  <% if entries.any? %>
+    <% entries.each_with_index do |entry, index| %>
+      <%= render "queue_entry_card", entry: entry, position: index + 1 %>
+    <% end %>
+  <% else %>
+    <p class="caption mb-4">No group <%= status %>.</p>
+  <% end %>
+<% end %>
