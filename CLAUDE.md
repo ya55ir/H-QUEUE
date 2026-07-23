@@ -41,7 +41,7 @@ Une branche = un ticket. Limiter les dépendances techniques entre tickets.
 
 ## Conventions Rails
 
-- MVC, DRY, SRP. Tables au pluriel, REST, `before_action`/`skip_before_action`.
+- MVC, DRY, SRP. tables au pluriel, REST, `before_action`/`skip_before_action`.
 - Nommage branches : `feature/xxx`, `fix/xxx`. Commits courts.
 - Jamais de push direct sur `master` : toujours une PR, review + merge par le Lead Dev.
 - Secrets dans `.env` (git ignore), `heroku config:set` en prod.
@@ -50,6 +50,6 @@ Une branche = un ticket. Limiter les dépendances techniques entre tickets.
 ## Attentes de réponse
 
 - Court et direct, sans enrobage.
-- Sujets complexes (BDD, archi, Twilio, Devise, migrations) : détailler avec code et étapes.
+- Sujets complexes (BDD, archi, Twilio, Devise, migrations) : détailler avec les étapes et le code.
 - Toujours du code concret (Ruby/Rails/ERB) pour l'implémentation.
 - Pour un model : montrer migration + model (associations + validations).
