@@ -1,0 +1,33 @@
+<%# Bannière d'installation PWA — iOS uniquement.
+     Masquée par défaut (d-none), révélée en JS par le contrôleur Stimulus
+     pwa-install seulement sur iPhone/iPad non installé (voir le controller
+     pour le détail : iOS n'a pas de prompt d'installation natif).
+     Usage : render "shared/pwa_install_banner" %>
+<div class="alert alert-primary d-none mb-3" data-controller="pwa-install" role="alert">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-mobile-screen-button"></i>
+    <div class="flex-grow-1">Installe H-Queue sur ton écran d'accueil pour un accès plus rapide.</div>
+    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#pwa-install-modal">
+      Installer
+    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+
+<div class="modal fade" id="pwa-install-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title h5 mb-0">Installer l'application</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol class="mb-0">
+          <li>Appuie sur <i class="fa-solid fa-arrow-up-from-bracket"></i> <strong>Partager</strong> dans Safari.</li>
+          <li>Sélectionne <strong>Sur l'écran d'accueil</strong>.</li>
+          <li>Appuie sur <strong>Ajouter</strong>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
