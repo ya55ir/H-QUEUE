@@ -1,0 +1,10 @@
+<%# Rafraîchit la page en temps réel quand la queue du venue change.
+     Toute création ou mise à jour d'une queue_entry émet un broadcast_refresh
+     sur le canal du venue (cf. QueueEntry#broadcast_queue_refresh).
+     Locals :
+       venue (Venue) - le venue dont on suit la file %>
+<% content_for :head do %>
+  <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+<% end %>
+
+<%= turbo_stream_from venue %>

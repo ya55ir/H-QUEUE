@@ -1,3 +1,5 @@
+<%= render "shared/live_venue_queue", venue: @queue_entry.venue %>
+
 <% if @queue_entry.waiting? %>
   <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Grab a drink nearby, we've got your spot" %>
 
