@@ -5,7 +5,7 @@
         subtitle: "Search a venue or share your location to see venues around you." %>
 <% elsif venues.any? %>
   <h2 class="h5 mb-3">
-    <%= pluralize(venues.count, "Venue") %><%= " near" if local_assigns[:near] %>
+    <%= pluralize(venues.count, "Venue") %>
     <span class="text-primary">“<%= query %>”</span>
   </h2>
 

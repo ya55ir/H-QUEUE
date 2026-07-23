@@ -1,13 +1,29 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Soumet le formulaire de recherche automatiquement à la frappe,
-// avec un debounce pour éviter une requête par caractère tapé. On soumet la requête quand le user a terminé de saisir des caractères dans le champs de recherche, après un délai de 300ms.
-// La réponse remplace le contenu du turbo-frame "venues_results" par les venues cards ou empty state, sans reload de la page.
+// Pilote le champ de recherche des venues.
+// - submit : soumet le formulaire à la frappe avec un debounce de 300ms,
+//   la réponse remplace le turbo-frame "venues_results" sans reload.
+// - toggleClearButton : affiche le bouton clear dès qu'il y a du contenu dans le champ.
+// - clearQuery : vide le champ et relance la recherche immédiatement.
 export default class extends Controller {
+  static targets = ["input", "clearButton"]
+
   submit() {
     clearTimeout(this.timeout)
     this.timeout = setTimeout(() => {
       this.element.requestSubmit()
     }, 300)
+  }
+
+  toggleClearButton() {
+    this.clearButtonTarget.classList.toggle("d-none", this.inputTarget.value === "")
+  }
+
+  clearQuery() {
+    clearTimeout(this.timeout)
+    this.inputTarget.value = ""
+    this.clearButtonTarget.classList.add("d-none")
+    this.inputTarget.focus()
+    this.element.requestSubmit()
   }
 }

@@ -8,7 +8,12 @@
     <%= f.text_field :query, value: @query,
           class: "form-control", placeholder: "Search by name or address...",
           autocomplete: "off",
-          data: { action: "input->search#submit" } %>
+          data: { search_target: "input",
+                  action: "input->search#submit input->search#toggleClearButton" } %>
+    <button type="button" aria-label="Clear search"
+            class="fa-solid fa-circle-xmark field-icon field-icon-right <%= "d-none" if @query.blank? %>"
+            data-search-target="clearButton"
+            data-action="search#clearQuery"></button>
   </div>
 <% end %>
 
