@@ -7,9 +7,10 @@
       <i class="fa-solid fa-utensils"></i>
     </div>
   <% end %>
-  <%= link_to venues_path, class: "btn-back venue-infos-back" do %>
-    <i class="fa-solid fa-arrow-left me-2"></i>Back
-  <% end %>
+  <%= link_to venues_path(query: params[:query], near_venue_id: params[:near_venue_id]),
+      class: "btn-back venue-infos-back" do %>
+  <i class="fa-solid fa-arrow-left me-2"></i>Back
+<% end %>
 </div>
 
 <h1><%= venue.name %></h1>
@@ -36,3 +37,4 @@
 <% if venue.description.present? %>
   <p class="text-secondary"><%= venue.description %></p>
 <% end %>
+
