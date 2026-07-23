@@ -11,9 +11,12 @@
 
   <% venues.each do |venue| %>
     <% if local_assigns[:near] %>
-      <%= render "shared/venue_card", venue: venue, distance: venue.distance.round(1) %>
+      <%= render "shared/venue_card", venue: venue,
+          distance: venue.distance.round(1),
+          path: venue_path(venue, near_venue_id: params[:near_venue_id]) %>
     <% else %>
-      <%= render "shared/venue_card", venue: venue %>
+      <%= render "shared/venue_card", venue: venue,
+          path: venue_path(venue, query: query) %>
     <% end %>
   <% end %>
 <% else %>
