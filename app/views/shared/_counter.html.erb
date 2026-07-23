@@ -5,7 +5,7 @@
        wait  (Integer, optionnel) — temps d'attente moyen en minutes, masqué si nil %>
 <div class="card text-center mb-4">
   <div class="card-body">
-    <div class="counter"><%= count %></div>
+    <div class="counter" id="counter-<%= count %>"><%= count %></div>
     <p class="text-dark mb-0"><%= label %></p>
     <% if local_assigns[:wait].present? %>
       <p class="caption mb-0 mt-1">
