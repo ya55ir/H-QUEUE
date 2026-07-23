@@ -7,10 +7,19 @@
       <% end %>
       <%= entry.display_name %>
         </p>
-        
+
       <p class="caption mb-0"><%= entry.display_phone %> · <%= pluralize(entry.party_size, "guest") %></p>
       <p class="caption mb-0"><%= time_ago_in_words(entry.waiting_since) %> ago</p>
     </div>
-    <span class="badge-status badge-<%= entry.status %>"><%= entry.status.capitalize %></span>
+     <% if entry.waiting? %>
+      <%= button_to "Notify",
+            notify_manager_queue_entry_path(entry),
+            method: :patch,
+            class: "btn btn-primary" %>
+    <% else %>
+      <span class="badge-status badge-<%= entry.status %>">
+        <%= entry.status.capitalize %>
+      </span>
+    <% end %>
   </div>
 </div>
