@@ -3,13 +3,18 @@
 <%= render "shared/page_title", title: "Find your spot",
       subtitle: "Search a venue and skip the line." %>
 
-<% search_label = @mode == :nearby ? @reference_venue.address : @query %>
+<% search_label = case @mode
+                  when :nearby     then @reference_venue.address
+                  when :geolocated then "around you"
+                  else                  @query
+                  end %>
 
 <%= form_with url: venues_path, method: :get,
       data: { turbo_frame: "venues_results", controller: "search" } do |f| %>
   <div class="field-control mb-3">
     <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
-    <%= f.text_field :query, value: search_label,
+    <%= f.text_field :query,
+          value: (@mode == :geolocated ? search_label.capitalize : search_label),
           class: "form-control", placeholder: "Search by name or address...",
           autocomplete: "off",
           data: { search_target: "input",
@@ -23,5 +28,6 @@
 
 <%= turbo_frame_tag "venues_results", target: "_top" do %>
   <%= render "venues/results", venues: @venues, mode: @mode,
-        label: search_label, reference_venue: @reference_venue %>
+        label: search_label, filter_params: @filter_params %>
 <% end %>
+
