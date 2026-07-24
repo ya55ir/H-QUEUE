@@ -32,6 +32,13 @@ label,
     }
 }
 
+// Champ en lecture seule affichant un filtre appliqué (géolocalisation).
+// Bordure orange pour signaler l'état actif, sans le halo qui, lui, signale le focus.
+.form-control.is-locked {
+    border-color: $primary;
+    cursor: default;
+}
+
 // --- Champ avec icônes optionnelles ---
 .field-control {
     position: relative;
@@ -68,4 +75,21 @@ button.field-icon {
     border: 0;
     padding: 0;
     line-height: 1;
+}
+
+// Spinner du bouton de géolocalisation.
+// fa-spin ne peut pas être utilisé ici : il anime `transform`, qui porte déjà
+// le centrage vertical de .field-icon — la rotation écraserait le translateY.
+@keyframes field-icon-spin {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.field-icon-spin {
+    animation: field-icon-spin 1s linear infinite;
 }

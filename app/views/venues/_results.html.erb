@@ -1,9 +1,9 @@
 <%# Liste des venues.
      Locals :
-       venues          (Array)
-       mode            (Symbol) :search ou :nearby
-       label           (String, nullable) — terme affiché dans le titre des résultats
-       reference_venue (Venue, nullable) — venue de référence en mode :nearby
+       venues        (Array)
+       mode          (Symbol) :search, :nearby ou :geolocated
+       label         (String, nullable) — terme affiché dans le titre des résultats
+       filter_params (Hash) — critères de la liste, propagés sur les liens des venues
 %>
 <% if label.blank? %>
   <%= render "shared/feedback",
@@ -17,15 +17,15 @@
   </h2>
 
   <% venues.each do |venue| %>
-    <% if mode == :nearby %>
-      <%= render "shared/venue_card", venue: venue,
-          distance: venue.distance.round(1),
-          path: venue_path(venue, near_venue_id: reference_venue.id) %>
-    <% else %>
-      <%= render "shared/venue_card", venue: venue,
-          path: venue_path(venue, query: label) %>
-    <% end %>
+    <%= render "shared/venue_card", venue: venue,
+          distance: (venue.distance.round(1) unless mode == :search),
+          path: venue_path(venue, **filter_params) %>
   <% end %>
+<% elsif mode == :geolocated %>
+  <%= render "shared/feedback",
+        icon: "location-crosshairs",
+        title: "No venues around you",
+        subtitle: "Try searching by name or address instead." %>
 <% else %>
   <%= render "shared/feedback",
         icon: "magnifying-glass",

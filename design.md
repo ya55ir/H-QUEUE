@@ -81,13 +81,25 @@ Padding `1rem 1.5rem` (~56px de haut), forme pill, Baloo 2 bold. Icône optionne
 ### Formulaire (`_form.scss`)
 - **Label** `.form-label` : Baloo bold, MAJUSCULES, navy, 14px.
 - **Input** `.form-control` : pill, bordure `$border`, texte navy, placeholder `$tertiary`. Focus/`.is-active` → bordure orange + halo `$primary-subtle`.
-- **Champ à icônes** : wrapper `.field-control` + `.field-icon .field-icon-left` / `.field-icon-right` (l'icône droite est orange, cliquable — ex. clear).
+- **`.is-locked`** : champ en lecture seule affichant un filtre appliqué (ex. géolocalisation). Bordure orange **sans** halo — le halo signale le focus, pas un état persistant. Se combine avec `readonly` et porte `cursor: default`.
+- **Champ à icônes** : wrapper `.field-control` + `.field-icon .field-icon-left` / `.field-icon-right`. L'icône gauche est décorative (`<i>`, `$tertiary`) ; l'icône droite est orange et **cliquable**, donc un `<button>` (clear, géolocalisation).
+- **`.field-icon-spin`** : animation de chargement pour un bouton `.field-icon` (ex. pendant `getCurrentPosition`). À utiliser à la place de `fa-spin`, qui écraserait le `translateY(-50%)` de centrage vertical. Combiner avec `fa-fw` pour éviter le décalage entre glyphes de largeurs différentes.
 
 ```erb
+<%# Défaut : loupe + bouton géolocalisation %>
 <div class="field-control">
   <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
   <input type="text" class="form-control" placeholder="75017 Paris">
-  <i class="fa-solid fa-location-crosshairs field-icon field-icon-right"></i>
+  <button type="button" aria-label="Use my location"
+          class="fa-solid fa-fw fa-location-crosshairs field-icon field-icon-right"></button>
+</div>
+
+<%# Géolocalisé : pin + libellé figé, champ non éditable %>
+<div class="field-control">
+  <i class="fa-solid fa-location-dot field-icon field-icon-left"></i>
+  <input type="text" class="form-control is-locked" value="Around you" readonly>
+  <button type="button" aria-label="Clear search"
+          class="fa-solid fa-circle-xmark field-icon field-icon-right"></button>
 </div>
 ```
 

@@ -3,25 +3,49 @@
 <%= render "shared/page_title", title: "Find your spot",
       subtitle: "Search a venue and skip the line." %>
 
-<% search_label = @mode == :nearby ? @reference_venue.address : @query %>
+<% around_you_label = "around you" %>
+<% geolocated = @mode == :geolocated %>
+<% search_label = case @mode
+                  when :nearby     then @reference_venue.address
+                  when :geolocated then around_you_label
+                  else                  @query
+                  end %>
 
-<%= form_with url: venues_path, method: :get,
-      data: { turbo_frame: "venues_results", controller: "search" } do |f| %>
-  <div class="field-control mb-3">
-    <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
-    <%= f.text_field :query, value: search_label,
-          class: "form-control", placeholder: "Search by name or address...",
+<%= form_with url: venues_path, method: :get, class: "mb-3",
+      data: { turbo_frame: "venues_results", controller: "search",
+              search_around_you_label_value: around_you_label } do |f| %>
+  <%= f.hidden_field :latitude,  value: params[:latitude],
+        data: { search_target: "latitude" } %>
+  <%= f.hidden_field :longitude, value: params[:longitude],
+        data: { search_target: "longitude" } %>
+
+  <div class="field-control">
+    <i class="fa-solid <%= geolocated ? "fa-location-dot" : "fa-magnifying-glass" %> field-icon field-icon-left"
+       data-search-target="searchIcon"></i>
+
+    <%= f.text_field :query,
+          value: (geolocated ? search_label.capitalize : search_label),
+          class: "form-control #{"is-locked" if geolocated}",
+          readonly: geolocated,
+          placeholder: "Search by name or address...",
           autocomplete: "off",
-          data: { search_target: "input",
-                  action: "input->search#submit input->search#toggleClearButton" } %>
+          data: { search_target: "input", action: "input->search#onInput" } %>
+
+   <button type="button" aria-label="Use my location"
+            class="fa-solid fa-fw fa-location-crosshairs field-icon field-icon-right <%= "d-none" if search_label.present? %>"
+            data-search-target="geoButton"
+            data-action="search#locate"></button>
+
     <button type="button" aria-label="Clear search"
             class="fa-solid fa-circle-xmark field-icon field-icon-right <%= "d-none" if search_label.blank? %>"
             data-search-target="clearButton"
             data-action="search#clearQuery"></button>
   </div>
+
+  <p class="caption text-danger mt-2 mb-0 d-none" data-search-target="error"></p>
 <% end %>
 
 <%= turbo_frame_tag "venues_results", target: "_top" do %>
   <%= render "venues/results", venues: @venues, mode: @mode,
-        label: search_label, reference_venue: @reference_venue %>
+        label: search_label, filter_params: @filter_params %>
 <% end %>
