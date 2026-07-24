@@ -7,9 +7,11 @@
       <i class="fa-solid fa-utensils"></i>
     </div>
   <% end %>
-  <%= link_to venues_path(query: params[:query], near_venue_id: params[:near_venue_id]),
+  <%= link_to venues_path(query: params[:query],
+                          near_venue_id: params[:near_venue_id],
+                          latitude: params[:latitude],
+                          longitude: params[:longitude]),
       class: "btn-back venue-infos-back" do %>
-  <i class="fa-solid fa-arrow-left me-2"></i>Back
 <% end %>
 </div>
 

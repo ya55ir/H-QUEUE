@@ -21,6 +21,11 @@
           distance: (venue.distance.round(1) unless mode == :search),
           path: venue_path(venue, **filter_params) %>
   <% end %>
+<% elsif mode == :geolocated %>
+  <%= render "shared/feedback",
+        icon: "location-crosshairs",
+        title: "No venues around you",
+        subtitle: "Try searching by name or address instead." %>
 <% else %>
   <%= render "shared/feedback",
         icon: "magnifying-glass",

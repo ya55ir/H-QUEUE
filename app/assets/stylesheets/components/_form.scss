@@ -69,3 +69,20 @@ button.field-icon {
     padding: 0;
     line-height: 1;
 }
+
+// Spinner du bouton de géolocalisation.
+// fa-spin ne peut pas être utilisé ici : il anime `transform`, qui porte déjà
+// le centrage vertical de .field-icon — la rotation écraserait le translateY.
+@keyframes field-icon-spin {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.field-icon-spin {
+    animation: field-icon-spin 1s linear infinite;
+}

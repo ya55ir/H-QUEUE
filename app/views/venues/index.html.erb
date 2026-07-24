@@ -29,11 +29,10 @@
           readonly: geolocated,
           placeholder: "Search by name or address...",
           autocomplete: "off",
-          data: { search_target: "input",
-                  action: "input->search#submit input->search#toggleClearButton" } %>
+          data: { search_target: "input", action: "input->search#onInput" } %>
 
-    <button type="button" aria-label="Use my location"
-            class="fa-solid fa-location-crosshairs field-icon field-icon-right <%= "d-none" if search_label.present? %>"
+   <button type="button" aria-label="Use my location"
+            class="fa-solid fa-fw fa-location-crosshairs field-icon field-icon-right <%= "d-none" if search_label.present? %>"
             data-search-target="geoButton"
             data-action="search#locate"></button>
 
