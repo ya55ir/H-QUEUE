@@ -4,11 +4,11 @@ class VenuesController < ApplicationController
 
   def index
     if params[:near_venue_id].present?
-      venue   = Venue.find(params[:near_venue_id])
-      @venues = Venue.nearby_of(venue).to_a
-      @query  = venue.address
-      @near   = true
+      @mode            = :nearby
+      @reference_venue = Venue.find(params[:near_venue_id])
+      @venues          = Venue.nearby_of(@reference_venue).to_a
     else
+      @mode   = :search
       @query  = params[:query]
       @venues = Venue.search(@query)
     end

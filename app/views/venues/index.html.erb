@@ -3,22 +3,25 @@
 <%= render "shared/page_title", title: "Find your spot",
       subtitle: "Search a venue and skip the line." %>
 
+<% search_label = @mode == :nearby ? @reference_venue.address : @query %>
+
 <%= form_with url: venues_path, method: :get,
       data: { turbo_frame: "venues_results", controller: "search" } do |f| %>
   <div class="field-control mb-3">
     <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
-    <%= f.text_field :query, value: @query,
+    <%= f.text_field :query, value: search_label,
           class: "form-control", placeholder: "Search by name or address...",
           autocomplete: "off",
           data: { search_target: "input",
                   action: "input->search#submit input->search#toggleClearButton" } %>
     <button type="button" aria-label="Clear search"
-            class="fa-solid fa-circle-xmark field-icon field-icon-right <%= "d-none" if @query.blank? %>"
+            class="fa-solid fa-circle-xmark field-icon field-icon-right <%= "d-none" if search_label.blank? %>"
             data-search-target="clearButton"
             data-action="search#clearQuery"></button>
   </div>
 <% end %>
 
 <%= turbo_frame_tag "venues_results", target: "_top" do %>
-  <%= render "venues/results", venues: @venues, query: @query, near: @near %>
+  <%= render "venues/results", venues: @venues, mode: @mode,
+        label: search_label, reference_venue: @reference_venue %>
 <% end %>
