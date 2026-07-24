@@ -25,7 +25,7 @@
 
     <%= f.text_field :query,
           value: (geolocated ? search_label.capitalize : search_label),
-          class: "form-control #{"is-active" if geolocated}",
+          class: "form-control #{"is-locked" if geolocated}",
           readonly: geolocated,
           placeholder: "Search by name or address...",
           autocomplete: "off",

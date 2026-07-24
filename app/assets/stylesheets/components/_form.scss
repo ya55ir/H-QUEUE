@@ -32,6 +32,13 @@ label,
     }
 }
 
+// Champ en lecture seule affichant un filtre appliqué (géolocalisation).
+// Bordure orange pour signaler l'état actif, sans le halo qui, lui, signale le focus.
+.form-control.is-locked {
+    border-color: $primary;
+    cursor: default;
+}
+
 // --- Champ avec icônes optionnelles ---
 .field-control {
     position: relative;

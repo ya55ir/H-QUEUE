@@ -88,7 +88,7 @@ export default class extends Controller {
   showAroundYou() {
     this.inputTarget.value = this.capitalize(this.aroundYouLabelValue)
     this.inputTarget.readOnly = true
-    this.inputTarget.classList.add("is-active")
+    this.inputTarget.classList.add("is-locked")
     this.searchIconTarget.classList.replace("fa-magnifying-glass", "fa-location-dot")
     this.toggleButtons()
   }
@@ -96,7 +96,7 @@ export default class extends Controller {
   resetField() {
     this.inputTarget.value = ""
     this.inputTarget.readOnly = false
-    this.inputTarget.classList.remove("is-active")
+    this.inputTarget.classList.remove("is-locked")
     this.searchIconTarget.classList.replace("fa-location-dot", "fa-magnifying-glass")
     this.clearCoordinates()
     this.toggleButtons()

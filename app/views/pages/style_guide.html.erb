@@ -18,28 +18,48 @@
 
   <%# ---------- FORM ---------- %>
   <h2 class="h5 mt-4 mb-2">Form fields</h2>
-  <%# 1. Default, icons left & right, sans label %>
-  <p class="text-dark small mb-1">Default + left & right icons</p>
+  <%# 1. Default : icône gauche décorative, bouton géoloc à droite %>
+  <p class="text-dark small mb-1">Default + left icon & geo button</p>
   <div class="field-control mb-3">
     <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
     <input type="text" class="form-control" placeholder="75017 Paris">
-    <i class="fa-solid fa-location-crosshairs field-icon field-icon-right"></i>
+    <button type="button" aria-label="Use my location"
+            class="fa-solid fa-fw fa-location-crosshairs field-icon field-icon-right"></button>
   </div>
 
-  <%# 2. Active, icons left & right, sans label %>
-  <p class="text-dark small mb-1">Active + left & right icons</p>
+  <%# 2. Active : saisie en cours, bouton clear à droite %>
+  <p class="text-dark small mb-1">Active + left icon & clear button</p>
   <div class="field-control mb-3">
     <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
     <input type="text" class="form-control is-active" value="75017 Paris" placeholder="75017 Paris">
-    <i class="fa-solid fa-circle-xmark field-icon field-icon-right"></i>
+    <button type="button" aria-label="Clear search"
+            class="fa-solid fa-circle-xmark field-icon field-icon-right"></button>
   </div>
 
-  <%# 3. Default avec label, sans icône %>
+  <%# 3. Locating : spinner pendant getCurrentPosition %>
+  <p class="text-dark small mb-1">Locating</p>
+  <div class="field-control mb-3">
+    <i class="fa-solid fa-magnifying-glass field-icon field-icon-left"></i>
+    <input type="text" class="form-control" placeholder="Search by name or address...">
+    <button type="button" aria-label="Locating" disabled
+            class="fa-solid fa-fw fa-spinner field-icon field-icon-right field-icon-spin"></button>
+  </div>
+
+  <%# 4. Geolocated : pin + libellé figé, champ readonly %>
+  <p class="text-dark small mb-1">Geolocated (readonly)</p>
+  <div class="field-control mb-3">
+    <i class="fa-solid fa-location-dot field-icon field-icon-left"></i>
+   <input type="text" class="form-control is-locked" value="Around you" readonly>
+    <button type="button" aria-label="Clear search"
+            class="fa-solid fa-circle-xmark field-icon field-icon-right"></button>
+  </div>
+
+  <%# 5. Default avec label, sans icône %>
   <p class="text-dark small mb-1">Default + label</p>
   <label class="form-label" for="guests">Number of guests</label>
   <input type="text" id="guests" class="form-control mb-3" placeholder="How many are you?">
 
-  <%# 4. Filled avec label, téléphone %>
+  <%# 6. Filled avec label, téléphone %>
   <p class="text-dark small mb-1">Filled + label</p>
   <label class="form-label" for="phone_number">Phone number</label>
   <input type="tel" id="phone_number" class="form-control" value="+33 6 12 34 56 78" placeholder="+33 6 12 34 56 78">
