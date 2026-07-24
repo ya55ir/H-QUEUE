@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_22_133714) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_24_193037) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -75,6 +75,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_22_133714) do
     t.string "name"
     t.text "opening_hours"
     t.string "photo_url"
+    t.boolean "sms_enabled"
     t.datetime "updated_at", null: false
     t.string "venue_type"
   end

@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   end
 
   namespace :manager do
-    resources :venues, only: %i[index show]
+    resources :venues, only: %i[index show] do
+       member do
+        patch :toggle_sms
+       end
+    end
 
     resources :queue_entries, only: [] do
       member do
