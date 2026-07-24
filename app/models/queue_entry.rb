@@ -5,7 +5,9 @@ class QueueEntry < ApplicationRecord
   enum :status, { waiting: 0, notified: 1, confirmed: 2, seated: 3, cancelled: 4 }
 
   validates :party_size, presence: true, numericality: { greater_than: 0 }
-  validates :name, :phone_number, presence: true, if: -> { user.nil? }
+  validates :name, presence: true, if: -> { user.nil? }
+  validates :phone_number, presence: true, if: -> { user.nil? }
+  validate :phone_number_format, if: -> { user.nil? && phone_number.present? }
 
   after_commit :broadcast_queue_refresh, on: %i[create update]
 
@@ -31,6 +33,13 @@ class QueueEntry < ApplicationRecord
   end
 
   private
+
+  def phone_number_format
+    digits = phone_number.gsub(/[^\d+]/, "")
+    return if digits =~ /\A\+?\d{9,15}\z/
+
+    errors.add(:phone_number, "n'est pas un numéro de téléphone valide")
+  end
 
   # Signale à tous les clients qui consultent la page du venue de se rafraîchir
   def broadcast_queue_refresh
