@@ -13,7 +13,7 @@
 
   <div class="mb-3">
     <%= f.label :party_size, "Number of guests", class: "form-label" %>
-    <%= f.number_field :party_size, class: "form-control", placeholder: "How many are you?" %>
+    <%= f.number_field :party_size, min: 1, class: "form-control", placeholder: "How many are you?" %>
   </div>
 
   <%= f.submit "Confirm", class: "btn btn-primary w-100" %>
