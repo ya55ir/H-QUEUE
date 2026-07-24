@@ -35,8 +35,7 @@ class VenuesController < ApplicationController
     @venue = Venue.find(params[:id])
   end
 
-  # Coordonnées envoyées par le bouton de géolocalisation.
-  # nil si absentes ou non numériques : on retombe alors sur la recherche texte.
+  # Coordonnées renvoyées par le bouton de géolocalisation.
   def coordinates
     latitude  = Float(params[:latitude], exception: false)
     longitude = Float(params[:longitude], exception: false)
