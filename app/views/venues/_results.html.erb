@@ -1,4 +1,11 @@
-<% if query.blank? %>
+<%# Liste des venues.
+     Locals :
+       venues          (Array)
+       mode            (Symbol) :search ou :nearby
+       label           (String, nullable) — terme affiché dans le titre des résultats
+       reference_venue (Venue, nullable) — venue de référence en mode :nearby
+%>
+<% if label.blank? %>
   <%= render "shared/feedback",
         icon: "store",
         title: "No venues yet",
@@ -6,17 +13,17 @@
 <% elsif venues.any? %>
   <h2 class="h5 mb-3">
     <%= pluralize(venues.count, "Venue") %>
-    <span class="text-primary">“<%= query %>”</span>
+    <span class="text-primary">“<%= label %>”</span>
   </h2>
 
   <% venues.each do |venue| %>
-    <% if local_assigns[:near] %>
+    <% if mode == :nearby %>
       <%= render "shared/venue_card", venue: venue,
           distance: venue.distance.round(1),
-          path: venue_path(venue, near_venue_id: params[:near_venue_id]) %>
+          path: venue_path(venue, near_venue_id: reference_venue.id) %>
     <% else %>
       <%= render "shared/venue_card", venue: venue,
-          path: venue_path(venue, query: query) %>
+          path: venue_path(venue, query: label) %>
     <% end %>
   <% end %>
 <% else %>
