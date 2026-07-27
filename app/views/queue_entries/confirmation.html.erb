@@ -9,9 +9,9 @@
         subtitle: "You will receive a notification 10 minutes before your table is ready!" %>
 
   <%= render "shared/counter",
-        count: @queue_entry.tables_ahead,
-        label: @queue_entry.tables_ahead.positive? ? "#{'group'.pluralize(@queue_entry.tables_ahead)} ahead of you" : "You're next!",
-        wait: @queue_entry.venue.avg_wait_minutes %>
+      count: @queue_entry.parties_ahead,
+      label: @queue_entry.parties_ahead.positive? ? "#{'group'.pluralize(@queue_entry.parties_ahead)} ahead of you" : "You're next!",
+      wait: @queue_entry.estimated_wait_minutes %>
 
 <% elsif @queue_entry.notified? %>
   <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Almost there, are you coming?" %>
