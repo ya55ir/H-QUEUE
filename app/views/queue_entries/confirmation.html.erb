@@ -31,4 +31,6 @@
         icon: "utensils",
         title: "Thank you #{@queue_entry.name.presence || @queue_entry.user&.first_name}",
         subtitle: "Your table is waiting for you." %>
+
+  <%= link_to "Share with friends", share_queue_entry_path(@queue_entry), class: "btn btn-outline-brand w-100 mt-3" %>
 <% end %>

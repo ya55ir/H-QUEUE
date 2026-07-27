@@ -1,7 +1,8 @@
 class QueueEntriesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create show confirmation confirm decline]
-  before_action :set_queue_entry, only: %i[show confirmation confirm decline]
-  before_action :ensure_owner!, only: %i[show confirmation confirm decline]
+  skip_before_action :authenticate_user!, only: %i[new create show confirmation share confirm decline]
+  before_action :set_queue_entry, only: %i[show confirmation share confirm decline]
+  before_action :ensure_owner!, only: %i[show confirmation share confirm decline]
+  before_action :ensure_confirmed!, only: %i[share]
 
   def new
     @venue = Venue.find(params[:venue_id])
@@ -31,6 +32,9 @@ class QueueEntriesController < ApplicationController
   def confirmation
   end
 
+  def share
+  end
+
   def confirm
     @queue_entry.update(status: :confirmed)
     redirect_to confirmation_queue_entry_path(@queue_entry)
@@ -51,6 +55,13 @@ class QueueEntriesController < ApplicationController
     return if @queue_entry.user.nil?
 
     redirect_to root_path, alert: "Non autorisé" unless @queue_entry.user == current_user
+  end
+
+  def ensure_confirmed!
+    return if @queue_entry.confirmed?
+
+    redirect_to confirmation_queue_entry_path(@queue_entry),
+                alert: "You can share once your arrival is confirmed"
   end
 
   def queue_entry_params
