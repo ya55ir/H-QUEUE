@@ -25,6 +25,23 @@ class QueueEntry < ApplicationRecord
          .count
   end
 
+  def parties_ahead
+    venue.queue_entries
+         .where(status: :waiting)
+         .where("created_at < ?", created_at)
+         .count
+  end
+
+  def estimated_wait_minutes
+    return 0 if parties_ahead.zero?
+
+    tables_at_venue = venue.table_types.count
+    return venue.avg_wait_minutes if tables_at_venue.zero?
+
+    waves = (parties_ahead.to_f / tables_at_venue).ceil
+    waves * venue.avg_wait_minutes
+  end
+
   def display_name
     name.presence || [user&.first_name, user&.last_name].compact.join(" ")
   end
