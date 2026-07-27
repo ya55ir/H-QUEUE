@@ -17,10 +17,12 @@ Rails.application.routes.draw do
   resources :queue_entries, only: [:show] do
     member do
       get :confirmation
+      get :share
       patch :confirm
       patch :decline
     end
   end
+
 
   namespace :manager do
     resources :venues, only: %i[index show] do

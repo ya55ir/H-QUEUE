@@ -46,6 +46,10 @@ class QueueEntry < ApplicationRecord
     name.presence || [user&.first_name, user&.last_name].compact.join(" ")
   end
 
+  def share_message
+    "Come join me at #{venue.name} (#{venue.address}), our table is ready!"
+  end
+
   def display_phone
     phone_number.presence || user&.phone_number
   end

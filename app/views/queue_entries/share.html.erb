@@ -1,0 +1,11 @@
+<%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Invite your friends to join you!" %>
+
+<ul class="list-unstyled mb-4">
+  <li class="d-flex align-items-center gap-2 mb-2">
+    <i class="fa-solid fa-location-dot text-primary"></i>
+    <span><%= @queue_entry.venue.address %></span>
+  </li>
+</ul>
+
+<%= link_to "Share via SMS", "sms:&body=#{ERB::Util.url_encode(@queue_entry.share_message)}", class: "btn btn-primary w-100 mb-2" %>
+<%= link_to "Back to my queue", confirmation_queue_entry_path(@queue_entry), class: "btn btn-outline-brand w-100" %>
