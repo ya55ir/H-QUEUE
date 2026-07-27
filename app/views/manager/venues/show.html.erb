@@ -1,5 +1,36 @@
 <%= render "shared/page_title", title: @venue.name, subtitle: "Manage your virtual queue" %>
+<div class="card mb-4">
+  <div class="card-body d-flex align-items-center gap-3">
 
+    <%= form_with url: toggle_sms_manager_venue_path(@venue),
+                  method: :patch,
+                  local: true,
+                  class: "d-flex align-items-center gap-3 w-100" do %>
+  <%= hidden_field_tag :sms_enabled, "0" %>
+
+      <div class="form-check form-switch mb-0">
+        <%= check_box_tag :sms_enabled,
+                          "1",
+                          @venue.sms_enabled?,
+                          class: "form-check-input",
+                          role: "switch",
+                          onchange: "this.form.requestSubmit()" %>
+      </div>
+
+      <div>
+        <p class="mb-0 fw-bold">Send SMS via Twilio</p>
+
+        <p class="caption mb-0">
+          <% if @venue.sms_enabled? %>
+            A sms will be sent when you notify.
+          <% else %>
+            Notify updates the queue only, you are not sending sms.
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
 <% @queue_entries_by_status.each do |status, entries| %>
   <h2 class="h5 mb-2"><%= status.to_s.capitalize %> (<%= entries.size %>)</h2>
 

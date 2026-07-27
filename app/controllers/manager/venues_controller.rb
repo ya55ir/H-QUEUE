@@ -11,7 +11,16 @@ module Manager
         notified: @venue.queue_entries.notified.order(:created_at),
         confirmed: @venue.queue_entries.confirmed.order(:created_at)
       }
-      @next_entry = @queue_entries_by_status[:waiting].first
+    end
+
+    def toggle_sms
+      @venue = Venue.find(params[:id])
+
+      @venue.update!(
+        sms_enabled: params[:sms_enabled] == "1"
+      )
+
+      redirect_to manager_venue_path(@venue)
     end
   end
 end
