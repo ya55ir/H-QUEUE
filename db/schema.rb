@@ -75,7 +75,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_24_193037) do
     t.string "name"
     t.text "opening_hours"
     t.string "photo_url"
-    t.boolean "sms_enabled"
+    t.boolean "sms_enabled", default: false, null: false
     t.datetime "updated_at", null: false
     t.string "venue_type"
   end
