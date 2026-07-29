@@ -115,6 +115,20 @@ venues_data = [
     latitude: 48.8846,
     longitude: 2.3107
   },
+
+  {
+    name: "Le Wagon Bleu",
+    address: "16 Villa Gaudelet, 75011 Paris",
+    description: "Restaurant de démonstration utilisé pour tester la gestion de file d'attente et les notifications SMS.",
+    venue_type: "French Bistro",
+    opening_hours: "Monday-Sunday: 12:00-14:30 / 19:00-23:00",
+    photo_url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+    avg_wait_minutes: 10,
+    latitude: 48.8665,
+    longitude: 2.3799,
+    sms_enabled: true
+  },
+  
   {
     name: "Nonno Nino",
     address: "10 Rue Brémontier, 75017 Paris",
