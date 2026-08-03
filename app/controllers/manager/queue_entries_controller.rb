@@ -16,7 +16,12 @@ module Manager
 
     def send_notify_sms
       venue = @queue_entry.venue
-      confirmation_link = confirmation_queue_entry_url(@queue_entry)
+      url_options = Rails.application.routes.default_url_options
+      confirmation_link = confirmation_queue_entry_url(
+        @queue_entry,
+        host: url_options[:host],
+        protocol: url_options[:protocol]
+      )
 
       TwilioSmsService.call(
         to: @queue_entry.display_phone,
