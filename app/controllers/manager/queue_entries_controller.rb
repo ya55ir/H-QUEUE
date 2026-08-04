@@ -19,7 +19,7 @@ module Manager
       url_options = Rails.application.routes.default_url_options
       confirmation_link = confirmation_queue_entry_url(
         @queue_entry,
-        host: url_options[:host],
+        host: TwilioSmsService.link_host,
         protocol: url_options[:protocol]
       )
 
