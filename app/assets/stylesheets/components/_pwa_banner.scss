@@ -1,0 +1,72 @@
+// Composant : PWA INSTALL BANNER (iOS only)
+// Bannière ancrée en bas de l'écran + modal d'install (étapes numérotées).
+// Affichée en JS via pwa_install_controller (cf. shared/_pwa_install_banner).
+
+.pwa-banner {
+    position: fixed;
+    inset: auto 16px 16px 16px;
+    z-index: 1030;
+
+    padding: 16px;
+    background-color: $white;
+    border: 1px solid $border;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 2px 8px rgba($brand, .04);
+}
+
+.pwa-banner-text {
+    color: $brand;
+}
+
+#pwa-install-modal {
+    --bs-modal-margin: 1.5rem;
+
+    .modal-content {
+        --bs-modal-padding: 1.5rem;
+    }
+
+    .modal-header {
+        --bs-modal-header-padding-x: 1.5rem;
+        --bs-modal-header-padding-y: 1.5rem;
+        --bs-modal-header-padding: 1.5rem;
+    }
+}
+
+.pwa-banner .btn-close {
+    margin-right: -.25rem;
+}
+
+.pwa-steps {
+    list-style: none;
+    counter-reset: pwa-step;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.pwa-steps li {
+    counter-increment: pwa-step;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+}
+
+.pwa-steps li::before {
+    content: counter(pwa-step);
+    flex: 0 0 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: $primary-subtle;
+    color: $primary;
+    border-radius: 50%;
+
+    font-family: $headers-font;
+    font-weight: $font-weight-bold;
+    font-size: 1rem;
+}
