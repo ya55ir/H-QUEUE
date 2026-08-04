@@ -1,16 +1,19 @@
 <%# Bannière d'installation PWA — iOS uniquement.
      Masquée par défaut (d-none), révélée en JS par le contrôleur Stimulus
-     pwa-install seulement sur iPhone/iPad non installé (voir le controller
-     pour le détail : iOS n'a pas de prompt d'installation natif).
+     pwa-install seulement sur iPhone/iPad non installé 
      Usage : render "shared/pwa_install_banner" %>
-<div class="alert alert-primary d-none mb-3" data-controller="pwa-install" role="alert">
+<div class="pwa-banner d-none" data-controller="pwa-install"
+     role="region" aria-label="Install H-Queue">
   <div class="d-flex align-items-center gap-2">
-    <i class="fa-solid fa-mobile-screen-button"></i>
-    <div class="flex-grow-1">Installe H-Queue sur ton écran d'accueil pour un accès plus rapide.</div>
-    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#pwa-install-modal">
-      Installer
+    <p class="pwa-banner-text flex-grow-1 mb-0">
+      Install H-Queue on your phone for faster access.
+    </p>
+    <button type="button" class="btn btn-primary btn-sm rounded-pill"
+            data-bs-toggle="modal" data-bs-target="#pwa-install-modal">
+      Install
     </button>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close" aria-label="Close"
+            data-action="pwa-install#removeBanner"></button>
   </div>
 </div>
 
@@ -18,14 +21,14 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title h5 mb-0">Installer l'application</h3>
+        <h2 class="modal-title h5 mb-0">Install the app</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <ol class="mb-0">
-          <li>Appuie sur <i class="fa-solid fa-arrow-up-from-bracket"></i> <strong>Partager</strong> dans Safari.</li>
-          <li>Sélectionne <strong>Sur l'écran d'accueil</strong>.</li>
-          <li>Appuie sur <strong>Ajouter</strong>.</li>
+        <ol class="pwa-steps">
+          <li><span>Tap <i class="fa-solid fa-arrow-up-from-bracket text-primary"></i> <strong>Share</strong> in Safari.</span></li>
+          <li><span>Select <strong>Add to Home Screen</strong>.</span></li>
+          <li><span>Tap <strong>Add</strong>.</span></li>
         </ol>
       </div>
     </div>

@@ -12,4 +12,8 @@ export default class extends Controller {
       this.element.classList.remove("d-none")
     }
   }
+
+  removeBanner() {
+    this.element.remove()
+  }
 }
