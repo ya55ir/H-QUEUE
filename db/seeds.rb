@@ -7,17 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-if Rails.env.development?
-  puts "Cleaning development database..."
+if Rails.env.development? || ENV["RESET_DEMO_DATA"] == "true"
+  puts "Cleaning database..."
 
   QueueEntry.destroy_all
   TableType.destroy_all
   Venue.destroy_all
   User.destroy_all
 
-  puts "Development database cleaned"
+  puts "Database cleaned"
 else
-  puts "Existing production data will not be deleted"
+  puts "Existing production data will not be deleted (run with RESET_DEMO_DATA=true to reset before a demo)"
 end
 puts "Creating team users..."
 team_users_data = [
