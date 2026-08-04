@@ -98,11 +98,11 @@
         subtitle: "Search a venue or share your location to see venues around you." %>
 
   <%# ---------- PWA INSTALL BANNER (partial) ---------- %>
-  <h2 class="h5 mt-4 mb-2">PWA install banner <small class="text-secondary">partial — iOS only</small></h2>
-  <p class="caption mb-2">Masquée par défaut, affichée en JS uniquement sur iPhone/iPad non installé (cf. <code>pwa_install_controller.js</code>).</p>
+  <h2 class="h5 mt-4 mb-2">PWA install banner <small class="text-secondary">partial - iOS only</small></h2>
+  <p class="caption mb-2">Hidden by default, shown via JS on non-installed iPhone/iPad only (see <code>pwa_install_controller.js</code>).</p>
   <%= render "shared/pwa_install_banner" %>
-  <button type="button" class="btn btn-outline-brand btn-sm" data-bs-toggle="modal" data-bs-target="#pwa-install-modal">
-    Voir la modal d'instructions
+  <button type="button" class="btn btn-outline-brand" data-bs-toggle="modal" data-bs-target="#pwa-install-modal">
+    Preview install modal
   </button>
 
   <%# ---------- VENUE CARD (partial) ---------- %>
