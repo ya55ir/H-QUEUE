@@ -1,0 +1,26 @@
+<%= render "shared/page_title", title: @venue.name, subtitle: "Archived queues" %>
+
+<%= link_to "← Back", manager_venue_path(@venue), class: "caption d-inline-block mb-3" %>
+
+<% if @entries_by_day.any? %>
+  <% @entries_by_day.each do |day, entries| %>
+    <h2 class="h5 mb-2"><%= l(day, format: :long) %> (<%= pluralize(entries.size, "group") %>)</h2>
+
+    <% entries.each do |entry| %>
+      <div class="card mb-2">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div>
+            <p class="mb-0 fw-bold"><%= entry.display_name %></p>
+            <p class="caption mb-0"><%= entry.display_phone %> · <%= pluralize(entry.party_size, "guest") %></p>
+          </div>
+          <span class="badge-status badge-<%= entry.status %>">
+            <%= entry.status.capitalize %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= render "shared/feedback", icon: "box-archive", title: "No archives yet",
+        subtitle: "Queues are archived automatically every night." %>
+<% end %>

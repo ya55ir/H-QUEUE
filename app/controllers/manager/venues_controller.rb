@@ -7,10 +7,17 @@ module Manager
     def show
       @venue = Venue.find(params[:id])
       @queue_entries_by_status = {
-        waiting: @venue.queue_entries.waiting.order(:created_at),
-        notified: @venue.queue_entries.notified.order(:created_at),
-        confirmed: @venue.queue_entries.confirmed.order(:created_at)
+        waiting: @venue.queue_entries.active.waiting.order(:created_at),
+        notified: @venue.queue_entries.active.notified.order(:created_at),
+        confirmed: @venue.queue_entries.active.confirmed.order(:created_at)
       }
+    end
+
+    def archives
+      @venue = Venue.find(params[:id])
+      @entries_by_day = @venue.queue_entries.archived
+                               .order(archived_at: :desc)
+                               .group_by { |entry| entry.archived_at.to_date }
     end
 
     def toggle_sms

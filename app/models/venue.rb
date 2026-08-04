@@ -22,7 +22,7 @@ class Venue < ApplicationRecord
   end
 
   def current_queue_count
-    queue_entries.where(status: :waiting).count
+    queue_entries.active.where(status: :waiting).count
   end
 
   # Recherche générique des venues autour d'une position (latitude, longitude) dans une distance de NEARBY_RADIUS_KM.

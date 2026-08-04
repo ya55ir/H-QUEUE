@@ -1,6 +1,16 @@
 <%= render "shared/live_venue_queue", venue: @queue_entry.venue %>
 
-<% if @queue_entry.waiting? %>
+<% if @queue_entry.archived? %>
+  <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Queue closed for today" %>
+
+  <%= render "shared/feedback",
+        icon: "box-archive",
+        title: "This queue has been archived",
+        subtitle: "It's a new day — please join the queue again if you'd still like a table." %>
+
+  <%= link_to "Join the virtual queue", new_venue_queue_entry_path(@queue_entry.venue), class: "btn btn-primary w-100 mt-3" %>
+
+<% elsif @queue_entry.waiting? %>
   <%= render "shared/page_title", title: @queue_entry.venue.name, subtitle: "Grab a drink nearby, we've got your spot" %>
 
   <%= render "shared/feedback",
