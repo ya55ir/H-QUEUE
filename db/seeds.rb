@@ -119,16 +119,16 @@ venues_data = [
   {
     name: "Le Wagon Bleu",
     address: "7 rue Boursault, 75017 Paris",
-    description: "Restaurant de démonstration utilisé pour tester la gestion de file d'attente et les notifications SMS.",
+    description: "Authentic Corsican cuisine in a unique train carriage, with a festive atmosphere.",
     venue_type: "French Bistro",
     opening_hours: "Monday-Sunday: 12:00-14:30 / 19:00-23:00",
-    photo_url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+    photo_url: "https://res.cloudinary.com/dwcn9tyta/image/upload/v1785873548/unnamed_1_a21zzd.webp",
     avg_wait_minutes: 10,
     latitude: 48.8828,
     longitude: 2.3216,
     sms_enabled: true
   },
-  
+
   {
     name: "Nonno Nino",
     address: "10 Rue Brémontier, 75017 Paris",
@@ -242,6 +242,7 @@ end
 puts "✅ #{venues.count} venues created"
 # DEMO QUEUE
 
+reserved_demo_phone = "+33630178045"
 
 puts "⏳ Creating demo queues..."
 
@@ -296,7 +297,14 @@ puts "⏳ Creating queues for other venues..."
 other_venues = venues.drop(1)
 
 other_venues.each_with_index do |venue, venue_index|
-  selected_users = fake_users.rotate(venue_index * 2).first(6)
+   available_users =
+    if venue.name == "Le Wagon Bleu"
+      fake_users.reject { |user| user.phone_number == reserved_demo_phone }
+    else
+      fake_users
+    end
+
+  selected_users = available_users.rotate(venue_index * 2).first(6)
 
   selected_users.each_with_index do |user, user_index|
     status =
