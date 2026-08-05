@@ -45,8 +45,10 @@ export default class extends Controller {
   onLocationSuccess({ coords }) {
     this.stopLoading()
     this.inputTarget.value = ""
-    this.latitudeTarget.value = coords.latitude
-    this.longitudeTarget.value = coords.longitude
+    this.latitudeTarget.value = 48.8883
+    this.longitudeTarget.value = 2.3181
+    //this.latitudeTarget.value = coords.latitude
+    //this.longitudeTarget.value = coords.longitude
     // Le libellé est posé APRÈS la soumission : Turbo sérialise le formulaire
     // pendant requestSubmit(), on évite ainsi un query=Around+you dans l'URL.
     this.element.requestSubmit()

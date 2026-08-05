@@ -3,7 +3,7 @@ class Venue < ApplicationRecord
   has_many :queue_entries, dependent: :destroy
 
   geocoded_by :address # active near / distance sur les colonnes latitude & longitude
-  NEARBY_RADIUS_KM = 1 # distance de recherche par défaut
+  NEARBY_RADIUS_KM = 2 # distance de recherche par défaut
 
   validates :name, :address, presence: true
   validates :avg_wait_minutes, numericality: { greater_than: 0 }, allow_nil: true
