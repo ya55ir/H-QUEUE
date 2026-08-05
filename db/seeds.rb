@@ -43,8 +43,28 @@ team_users_data = [
     first_name: "Youssef",
     last_name: "Guizour",
     email: "youssef.guizour@hqueue.test",
-    phone_number: "+33652948943"
-  }
+    phone_number: "+33760291860"
+   },
+  {
+    first_name: "Eva",
+    last_name: "Lala",
+    email: "m-yasmine@live.fr",
+    phone_number: "+33651250803"
+  },
+ {
+    first_name: "Claire",
+    last_name: "Lo",
+    email: "m-yasmine@live.com",
+    phone_number: "+3378385637"
+  },
+
+   {
+    first_name: "Samia",
+    last_name: "Filali",
+    email: "f-samia@gmail.com",
+    phone_number: "+33783856489"
+  },
+
 ]
 
 team_users = team_users_data.map do |attributes|
@@ -187,7 +207,7 @@ venues_data = [
   {
     name: "Le Truffaut",
     address: "89 Rue Truffaut, 75017 Paris",
-    description: "Bistrot de quartier apprécié pour sa cuisine française de saison et son atmosphère chaleureuse.",
+    description: "A beloved neighborhood bistro know for seasonal french cuisine and warm, welcoming atmosphere.",
     venue_type: "French Bistro",
     opening_hours: "Monday-Friday: lunch and dinner service",
     photo_url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
