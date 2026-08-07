@@ -1,7 +1,7 @@
 module Manager
   class VenuesController < Manager::ApplicationController
     def index
-      @venues = Venue.all
+      @venues = Venue.where(name: ["Le Bistrot d'Yves", "Le Wagon Bleu"])
     end
 
     def show
