@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_24_193037) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_133250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "queue_entries", force: :cascade do |t|
+    t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "notified_at"
@@ -24,6 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_24_193037) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "venue_id", null: false
+    t.index ["archived_at"], name: "index_queue_entries_on_archived_at"
     t.index ["user_id"], name: "index_queue_entries_on_user_id"
     t.index ["venue_id"], name: "index_queue_entries_on_venue_id"
   end
@@ -75,7 +77,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_24_193037) do
     t.string "name"
     t.text "opening_hours"
     t.string "photo_url"
-    t.boolean "sms_enabled", default: false, null: false
+    t.boolean "sms_enabled"
     t.datetime "updated_at", null: false
     t.string "venue_type"
   end

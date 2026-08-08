@@ -36,3 +36,9 @@
     background-color: $success-subtle;
     color: $success;
 }
+
+.badge-cancelled,
+.badge-seated {
+    background-color: rgba($secondary, .16);
+    color: $secondary;
+}

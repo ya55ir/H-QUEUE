@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :venues, only: %i[index show] do
        member do
         patch :toggle_sms
+        get :archives
        end
     end
 

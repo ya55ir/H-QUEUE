@@ -6,7 +6,7 @@
   <% @venues.each do |venue| %>
     <%= render "shared/venue_card", venue: venue,
           path: manager_venue_path(venue),
-          queue_count: venue.queue_entries.waiting.count %>
+          queue_count: venue.queue_entries.active.waiting.count %>
   <% end %>
 <% else %>
   <%= render "shared/feedback", icon: "store", title: "No venues yet",
